@@ -1,6 +1,6 @@
 # AnalysisofCork-BasedNetworking
 
-![Minha Imagem]()
+![Minha Imagem](https://github.com/richardsanvie/CompetitiveWine/blob/richardBranch/Client/src/image/anigif.gif)
 
 ## Vercel:
 - CompetitiveWine : https://competitivewinetasting.vercel.app/
