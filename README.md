@@ -3,7 +3,7 @@
 ![Minha Imagem]()
 
 ## Vercel:
-- [CompetitiveWine](https://competitivewinetasting.vercel.app/)
+- [CompetitiveWine](https://competitivewinetasting.vercel.app/) : https://competitivewinetasting.vercel.app/
 
 ## Instalação
 **1. Clonando o Repositório**
