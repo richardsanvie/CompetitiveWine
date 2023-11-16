@@ -50,7 +50,7 @@ O seu projeto deve estar funcionando agora com as seguintes funcionalidades:
 
 Criar, ler, atualizar e excluir do banco de dados.
 
-**5. Bibliotecas Usadas**
+**5. bibliotecas quanto frameworks e ferramentas**
 
 Front-end:
 
