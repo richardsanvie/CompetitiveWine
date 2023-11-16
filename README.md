@@ -48,8 +48,7 @@ Certifique-se de estar na pasta server antes de executar os comandos acima. Isso
 
 O seu projeto deve estar funcionando agora com as seguintes funcionalidades:
 
-Criar, ler, atualizar e excluir jogos no banco de dados.
-Clicar em cartões para editar e excluir.
+Criar, ler, atualizar e excluir do banco de dados.
 
 **5. Bibliotecas Usadas**
 
