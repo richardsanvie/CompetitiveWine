@@ -8,6 +8,7 @@ import { EmBreveSideBox } from './pages/EmBreveSideBox'
 import store from './store'
 import { Cadastro } from './pages/Cadastro'
 import { PageEmBreve } from './pages/EmBreve'
+import { Testes } from './pages/Testes'
 
 const rotas = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const rotas = createBrowserRouter([
   {
     path: '/embreve',
     element: <PageEmBreve />
+  },
+  {
+    path: '/testes',
+    element: <Testes />
   }
 ])
 
