@@ -10,8 +10,8 @@ type DadosState = {
 const initialState: DadosState = {
   itens: [
     {
-      nome: 'João Silva',
-      cpf: '123.456.789-00',
+      nome: 'Astolfo Menezes Silva',
+      cpf: '124.798.987-00',
       atividade: enums.Atividade.Ativ,
       cargo: enums.Cargo.Cargo1,
       idsea: 71,
