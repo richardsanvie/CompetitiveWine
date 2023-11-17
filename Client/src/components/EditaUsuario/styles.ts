@@ -8,6 +8,57 @@ interface Props {
   cargo?: enums.Cargo
   isChecked?: boolean
 }
+
+const BotaoPai = `
+  border-radius: 10px;
+  border: 1px solid ${variaveis.azul};
+  background-color: ${variaveis.branco};
+  font-size: 16px;
+  color: #3a3a3a;
+  font-family: 'Roboto', sans-serif;
+  `
+
+export const FileInputContainer = styled.div`
+  height: 36px;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #4f4f4f;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: 702px;
+  border-radius: 10px;
+  border: 1px solid ${variaveis.azul};
+  background-color: ${variaveis.branco};
+`
+
+export const FileInput = styled.input`
+  display: none;
+`
+
+export const FileInputLabel = styled.label`
+  width: 700px;
+  height: 36px;
+  ${BotaoPai}
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  font-weight: 400;
+  &:hover {
+    background-color: ${variaveis.azul};
+    color: ${variaveis.branco};
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0.9;
+    cursor: pointer;
+  }
+`
+
+export const FileName = styled.span``
+
 export const Form = styled.form``
 
 export const InputFormatado = styled(IMaskInput)`
@@ -24,7 +75,7 @@ export const InputFormatadoCA = styled(InputFormatado)`
   height: 36px;
 `
 
-export const Body = styled.div`
+export const BodyEdit = styled.div`
   padding: 10px 0 20px 5px;
   margin-bottom: 14px;
   background-color: #edf1f5;
@@ -41,7 +92,7 @@ export const AtivoOuInativo = styled.div`
   background-color: ${variaveis.branco};
   margin-bottom: 27px;
 `
-export const AtivoOuInativoRemove = styled.div`
+export const AtivoOuInativoRemoveEdit = styled.div`
   width: 355px;
   border: 1px solid ${variaveis.azul};
   border-radius: 10px;

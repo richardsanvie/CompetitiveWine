@@ -1,5 +1,6 @@
+import React, { FormEvent, ChangeEvent, useState } from 'react'
+import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
-import { FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Axios from 'axios'
 
@@ -8,7 +9,8 @@ import * as enums from '../../utils/enums/CargoAtividade'
 import Dado from '../../models/Dado'
 import { cadastrar } from '../../store/reducers/dados'
 
-export const Testes = () => {
+export const Testes: React.FC = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [isChecked, setIsChecked] = useState(false)
 
   const handleCheckboxChangeLocal = () => {
@@ -30,6 +32,14 @@ export const Testes = () => {
   const [nascimento, setNascimento] = useState<any>()
   const [epi, setEpi] = useState(enums.Epi.Epi)
   const [ca, setCa] = useState<any>()
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files
+
+    if (files && files.length > 0) {
+      setSelectedFile(files[0])
+    }
+  }
 
   const novoDado = {
     nome,
@@ -68,13 +78,6 @@ export const Testes = () => {
     dispatch(cadastrar(dadoParaAdicionar))
     navigate('/')
   }
-
-  useEffect(() => {
-    if (epi === enums.Epi.Epi) {
-      setCa('00-0')
-    }
-  }, [epi, setCa])
-
   return (
     <>
       <S.Gestao>
@@ -271,7 +274,6 @@ export const Testes = () => {
                           </option>
                         </S.YoungInput>
                       </div>
-                      {/* {epi === enums.Epi.Epi ? } */}
                       <div>
                         <S.Label400>Informe o número do CA:</S.Label400>
                         <S.InputFormatadoCA
@@ -288,14 +290,6 @@ export const Testes = () => {
                       <div>
                         <S.OutlineButton>Adicionar EPI</S.OutlineButton>
                       </div>
-                      <S.BoxEpis>
-                        {enums.Epi.Epi} | {ca}
-                        <hr />
-                        {enums.Epi.Epi} | {ca}
-                        <hr />
-                        <hr />
-                        <hr />
-                      </S.BoxEpis>
                     </S.InternBox>
                   </S.Box>
                   <S.FullButton>Adicionar outra atividade</S.FullButton>
@@ -306,8 +300,13 @@ export const Testes = () => {
               <S.Title>
                 Adicione Atestado de Saúde Ocupacional (opcional):
               </S.Title>
-              <S.InputFile>Documento 1.png</S.InputFile>
-              <S.FullButton>Selecionar arquivo</S.FullButton>
+              <S.FileInputContainer>
+                {selectedFile && <S.FileName>{selectedFile.name}</S.FileName>}
+              </S.FileInputContainer>
+              <S.FileInputLabel>
+                Escolha um arquivo
+                <S.FileInput type="file" onChange={handleFileChange} />
+              </S.FileInputLabel>
             </S.BoxAtestado>
             <S.BotaoSalvar type="submit">Salvar</S.BotaoSalvar>
           </S.Body>

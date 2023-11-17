@@ -112,12 +112,12 @@ const EditaUsuario = ({
 
   return (
     <S.Form onSubmit={handlePageLoading}>
-      <S.Body>
+      <S.BodyEdit>
         <S.AtivoOuInativo>
           <div>
             <S.ButtonRemove onClick={handleDelete}>Remover</S.ButtonRemove>
           </div>
-          <S.AtivoOuInativoRemove>
+          <S.AtivoOuInativoRemoveEdit>
             <S.Label>o trabalhador está ativo ou inativo?</S.Label>
             <S.Ativo
               defaultValue={valor}
@@ -132,7 +132,7 @@ const EditaUsuario = ({
                 {enums.estaAtivo.Inativo}
               </option>
             </S.Ativo>
-          </S.AtivoOuInativoRemove>
+          </S.AtivoOuInativoRemoveEdit>
           <div>
             <S.ButtonRemove onClick={handleEditDado} type="submit">
               Salvar
@@ -299,7 +299,7 @@ const EditaUsuario = ({
           <S.InputFile>Documento 1.png</S.InputFile>
           <S.FullButton>Selecionar arquivo</S.FullButton>
         </S.BoxAtestado>
-      </S.Body>
+      </S.BodyEdit>
     </S.Form>
   )
 }

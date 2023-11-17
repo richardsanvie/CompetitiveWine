@@ -11,8 +11,58 @@ interface Props {
   isChecked?: boolean
 }
 
+const BotaoPai = `
+  border-radius: 10px;
+  border: 1px solid ${variaveis.azul};
+  background-color: ${variaveis.branco};
+  font-size: 16px;
+  color: #3a3a3a;
+  font-family: 'Roboto', sans-serif;
+  `
+
+export const FileInputContainer = styled.div`
+  height: 36px;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #4f4f4f;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: 702px;
+  border-radius: 10px;
+  border: 1px solid ${variaveis.azul};
+  background-color: ${variaveis.branco};
+`
+
+export const FileInput = styled.input`
+  display: none;
+`
+
+export const FileInputLabel = styled.label`
+  width: 700px;
+  height: 36px;
+  ${BotaoPai}
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  font-weight: 400;
+  &:hover {
+    background-color: ${variaveis.azul};
+    color: ${variaveis.branco};
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0.9;
+    cursor: pointer;
+  }
+`
+
+export const FileName = styled.span``
+
 export const Form = styled.form``
-export const CheckboxInput = styled.input``
+export const CheckboxInput = styled.input<Props>``
 export const BoxPai = styled.div``
 export const BoxAtestado = styled.div`
   width: 726px;
@@ -22,15 +72,6 @@ export const BoxAtestado = styled.div`
   border: 1px solid ${variaveis.azul};
   background-color: ${variaveis.branco};
   margin-top: 20px;
-`
-export const Epi = styled.div<Props>`
-  width: 726px;
-  height: ${(props) => (props.isChecked ? '294px' : 'auto')};
-  border: 1px solid ${variaveis.azul};
-  border-radius: 10px;
-  padding: 8px 12px 14px 12px;
-  justify-content: space-between;
-  margin-top: 26px;
 `
 
 export const DadosBasicos = styled.div`
@@ -83,6 +124,15 @@ export const Voltar = styled(Link)`
 export const Body = styled.div`
   padding: 35px 8px 26px 19px;
 `
+export const BodyEdit = styled.div`
+  padding: 10px 0 20px 5px;
+  margin-bottom: 14px;
+  background-color: #edf1f5;
+  background-color: ${variaveis.branco};
+  border: 1px solid ${variaveis.azul};
+  border-radius: 10px;
+`
+
 export const AtivoOuInativo = styled.div`
   width: 725px;
   border: 1px solid ${variaveis.azul};
@@ -244,15 +294,6 @@ export const FullInput = styled(SelectPai)<Props>`
   width: 676px;
 `
 
-const BotaoPai = `
-  border-radius: 10px;
-  border: 1px solid ${variaveis.azul};
-  background-color: ${variaveis.branco};
-  font-size: 16px;
-  color: #3a3a3a;
-  font-family: 'Roboto', sans-serif;
-  `
-
 export const FullButton = styled.div`
   width: 700px;
   height: 36px;
@@ -286,4 +327,48 @@ export const BotaoSalvar = styled.button`
     opacity: 0.9;
     cursor: pointer;
   }
+`
+
+// Edit
+
+export const ButtonRemove = styled.button`
+  border-radius: 10px;
+  height: 47px;
+  border: 1px solid ${variaveis.azul};
+  background-color: ${variaveis.branco};
+  width: 165px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #${variaveis.cinzaEscuro};
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  &:hover {
+    background-color: ${variaveis.azul};
+    color: ${variaveis.branco};
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0.9;
+    cursor: pointer;
+  }
+`
+
+export const AtivoOuInativoRemove = styled.div`
+  width: 355px;
+  border: 1px solid ${variaveis.azul};
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  background-color: ${variaveis.branco};
+`
+
+export const Epi = styled.div<Props>`
+  width: 726px;
+  height: ${(props) => (props.isChecked ? '294px' : 'auto')};
+  border: 1px solid ${variaveis.azul};
+  border-radius: 10px;
+  padding: 8px 12px 14px 12px;
+  background-color: ${variaveis.branco};
+  justify-content: space-between;
+  margin-top: 26px;
 `

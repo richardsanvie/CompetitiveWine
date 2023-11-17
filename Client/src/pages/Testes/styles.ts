@@ -11,9 +11,60 @@ interface Props {
   isChecked?: boolean
 }
 
+const BotaoPai = `
+  border-radius: 10px;
+  border: 1px solid ${variaveis.azul};
+  background-color: ${variaveis.branco};
+  font-size: 16px;
+  color: #3a3a3a;
+  font-family: 'Roboto', sans-serif;
+  `
+
 export const Form = styled.form``
 export const CheckboxInput = styled.input``
 export const BoxPai = styled.div``
+
+export const FileInputContainer = styled.div`
+  height: 36px;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #4f4f4f;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: 702px;
+  border-radius: 10px;
+  border: 1px solid ${variaveis.azul};
+  background-color: ${variaveis.branco};
+`
+
+export const FileInputLabel = styled.label`
+  width: 700px;
+  height: 36px;
+  ${BotaoPai}
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  font-weight: 400;
+  &:hover {
+    background-color: ${variaveis.azul};
+    color: ${variaveis.branco};
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0.9;
+    cursor: pointer;
+  }
+`
+
+export const FileInput = styled.input`
+  display: none;
+`
+
+export const FileName = styled.span``
+
 export const BoxAtestado = styled.div`
   width: 726px;
   height: 135px;
@@ -254,15 +305,6 @@ export const Select = styled(SelectPai)<Props>`
 export const FullInput = styled(SelectPai)<Props>`
   width: 676px;
 `
-
-const BotaoPai = `
-  border-radius: 10px;
-  border: 1px solid ${variaveis.azul};
-  background-color: ${variaveis.branco};
-  font-size: 16px;
-  color: #3a3a3a;
-  font-family: 'Roboto', sans-serif;
-  `
 
 export const FullButton = styled.div`
   width: 700px;

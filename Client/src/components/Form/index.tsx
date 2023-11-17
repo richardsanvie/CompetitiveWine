@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { FormEvent, useState } from 'react'
+import React, { FormEvent, ChangeEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Axios from 'axios'
 
@@ -8,7 +8,8 @@ import * as enums from '../../utils/enums/CargoAtividade'
 import Dado from '../../models/Dado'
 import { cadastrar } from '../../store/reducers/dados'
 
-export const Form = () => {
+export const Form: React.FC = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [isChecked, setIsChecked] = useState(false)
 
   const handleCheckboxChangeLocal = () => {
@@ -16,6 +17,14 @@ export const Form = () => {
     setEpi(enums.Epi.Epi)
     setAtividade(enums.Atividade.Ativ)
     setCa('00-0')
+  }
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files
+
+    if (files && files.length > 0) {
+      setSelectedFile(files[0])
+    }
   }
 
   const dispatch = useDispatch()
@@ -290,8 +299,13 @@ export const Form = () => {
               <S.Title>
                 Adicione Atestado de Saúde Ocupacional (opcional):
               </S.Title>
-              <S.InputFile>Documento 1.png</S.InputFile>
-              <S.FullButton>Selecionar arquivo</S.FullButton>
+              <S.FileInputContainer>
+                {selectedFile && <S.FileName>{selectedFile.name}</S.FileName>}
+              </S.FileInputContainer>
+              <S.FileInputLabel>
+                Escolha um arquivo
+                <S.FileInput type="file" onChange={handleFileChange} />
+              </S.FileInputLabel>
             </S.BoxAtestado>
             <S.BotaoSalvar type="submit">Salvar</S.BotaoSalvar>
           </S.Body>
