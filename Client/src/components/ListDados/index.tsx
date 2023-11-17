@@ -104,7 +104,7 @@ export const ListDados: React.FC<Props> = ({ atualizarInformacao }: Props) => {
                     valor={t.valor}
                   />
                   <S.Mais onClick={() => toggleButton(t.idsea)}>
-                    {openButton === t.idsea ? 'Sair' : '...'}
+                    {openButton === parseInt(t.cpf) ? 'Sair' : '...'}
                   </S.Mais>
                 </S.ControllName>
                 {openButton === t.idsea && (

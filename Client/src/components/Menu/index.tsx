@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { MenuItem } from '../MenuItem'
 import * as S from './styles'
+import { handleItemClick } from '../../utils/handleItemClickMenu'
 
 export type Props = {
   ativo?: boolean
@@ -9,71 +10,69 @@ export type Props = {
   informacaoCompartilhada: string
 }
 
-const Menu = ({ ativo, onClick, informacaoCompartilhada }: Props) => {
+const Menu = ({ informacaoCompartilhada }: Props) => {
   const itemNav = localStorage.getItem('selectedItem')
   const [selectedItem, setSelectedItem] = useState(
     itemNav ? parseInt(itemNav, 10) : 1
   )
-  const handleItemClick = (itemId: number) => {
-    setSelectedItem(itemId)
-    localStorage.setItem('selectedItem', itemId.toString())
-  }
+  const onItemClick = (itemId: number) =>
+    handleItemClick(itemId, setSelectedItem)
 
   const menuItems = [
     {
       id: 1,
       legenda: 'ITEM 1',
       to: '/',
-      onClick: () => handleItemClick(1),
+      onClick: () => onItemClick(1),
       complete: { informacaoCompartilhada }
     },
     {
       id: 2,
       legenda: 'ITEM 2',
       to: '/embreve',
-      onClick: () => handleItemClick(2)
+      onClick: () => onItemClick(2)
     },
     {
       id: 3,
       legenda: 'ITEM 3',
       to: '/embreve',
-      onClick: () => handleItemClick(3)
+      onClick: () => onItemClick(3)
     },
     {
       id: 4,
       legenda: 'ITEM 4',
       to: '/embreve',
-      onClick: () => handleItemClick(4)
+      onClick: () => onItemClick(4)
     },
     {
       id: 5,
       legenda: 'ITEM 5',
       to: '/embreve',
-      onClick: () => handleItemClick(5)
+      onClick: () => onItemClick(5)
     },
     {
       id: 6,
       legenda: 'ITEM 6',
       to: '/embreve',
-      onClick: () => handleItemClick(6)
+      onClick: () => onItemClick(6)
     },
     {
       id: 7,
       legenda: 'ITEM 7',
       to: '/embreve',
-      onClick: () => handleItemClick(7)
+      onClick: () => onItemClick(7)
     },
     {
       id: 8,
       legenda: 'ITEM 8',
       to: '/embreve',
-      onClick: () => handleItemClick(8)
+      onClick: () => onItemClick(8)
     },
     {
       id: 9,
       legenda: 'ITEM 9',
       to: '/embreve',
-      onClick: () => handleItemClick(9)
+      onClick: () => onItemClick(9)
     }
   ]
 
@@ -114,10 +113,6 @@ const Menu = ({ ativo, onClick, informacaoCompartilhada }: Props) => {
           </S.Ul>
         </div>
       </S.Menu>
-      {/* <div>
-        <button onClick={handlePrevClick}>Anterior</button>
-        <button onClick={handleNextClick}>Próximo</button>
-      </div> */}
     </>
   )
 }

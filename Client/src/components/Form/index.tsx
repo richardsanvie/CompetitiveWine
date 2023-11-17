@@ -11,7 +11,7 @@ import { cadastrar } from '../../store/reducers/dados'
 export const Form = () => {
   const [isChecked, setIsChecked] = useState(false)
 
-  const handleCheckboxChange = () => {
+  const handleCheckboxChangeLocal = () => {
     setIsChecked(!isChecked)
     setEpi(enums.Epi.Epi)
     setAtividade(enums.Atividade.Ativ)
@@ -214,7 +214,7 @@ export const Form = () => {
                 <S.CheckboxInput
                   type="checkbox"
                   checked={isChecked}
-                  onChange={handleCheckboxChange}
+                  onChange={handleCheckboxChangeLocal}
                 />
                 <S.Label400Span>O trabalhador não usa EPI.</S.Label400Span>
               </div>
