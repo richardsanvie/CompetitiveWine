@@ -74,6 +74,7 @@ const EditaUsuario = ({
     setIsChecked(!isChecked)
     setEpi(enums.Epi.Epi)
     setAtividade(enums.Atividade.Ativ)
+    setCa('00-0')
   }
 
   useEffect(() => {
@@ -243,6 +244,9 @@ const EditaUsuario = ({
                     setAtividade(evento.target.value as enums.Atividade)
                   }
                 >
+                  <option value={enums.Atividade.Ativ}>
+                    {enums.Atividade.Ativ}
+                  </option>
                   <option value={enums.Atividade.Ativ00}>
                     {enums.Atividade.Ativ00}
                   </option>
@@ -262,6 +266,7 @@ const EditaUsuario = ({
                         setEpi(evento.target.value as enums.Epi)
                       }
                     >
+                      <option value={enums.Epi.Epi}>{enums.Epi.Epi}</option>
                       <option value={enums.Epi.Epi1}>{enums.Epi.Epi1}</option>
                       <option value={enums.Epi.Epi2}>{enums.Epi.Epi2}</option>
                       <option value={enums.Epi.Epi3}>{enums.Epi.Epi3}</option>

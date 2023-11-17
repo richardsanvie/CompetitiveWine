@@ -4,7 +4,7 @@ export enum Cargo {
   Cargo2 = 'FullStack'
 }
 export enum Atividade {
-  Ativ = 'Autônomo/Não usa Epi',
+  Ativ = 'Autônomo',
   Ativ00 = 'Colaborar Partes',
   Ativ01 = 'Priorizar Backlog',
   Ativ02 = 'Gerenciar Desenvolvimento'

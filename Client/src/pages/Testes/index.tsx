@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Axios from 'axios'
 
@@ -15,6 +15,7 @@ export const Testes = () => {
     setIsChecked(!isChecked)
     setEpi(enums.Epi.Epi)
     setAtividade(enums.Atividade.Ativ)
+    setCa('00-0')
   }
 
   const dispatch = useDispatch()
@@ -23,7 +24,7 @@ export const Testes = () => {
   const [cpf, setCpf] = useState<any>()
   const [valor, setValor] = useState(enums.estaAtivo.Ativo)
   const [cargo, setCargo] = useState(enums.Cargo.Cargo0)
-  const [atividade, setAtividade] = useState(enums.Atividade.Ativ00)
+  const [atividade, setAtividade] = useState(enums.Atividade.Ativ)
   const [sexo, setSexo] = useState(enums.MascFem.Masculino)
   const [rg, setRg] = useState<any>()
   const [nascimento, setNascimento] = useState<any>()
@@ -67,6 +68,13 @@ export const Testes = () => {
     dispatch(cadastrar(dadoParaAdicionar))
     navigate('/')
   }
+
+  useEffect(() => {
+    if (epi === enums.Epi.Epi) {
+      setCa('00-0')
+    }
+  }, [epi, setCa])
+
   return (
     <>
       <S.Gestao>
@@ -132,7 +140,6 @@ export const Testes = () => {
               </div>
               <div>
                 <S.Label500>CPF</S.Label500>
-
                 <S.InputFormatado
                   mask="000.000.000-00"
                   value={cpf}
@@ -230,6 +237,9 @@ export const Testes = () => {
                         setAtividade(evento.target.value as enums.Atividade)
                       }
                     >
+                      <option value={enums.Atividade.Ativ}>
+                        {enums.Atividade.Ativ}
+                      </option>
                       <option value={enums.Atividade.Ativ00}>
                         {enums.Atividade.Ativ00}
                       </option>
@@ -249,6 +259,7 @@ export const Testes = () => {
                             setEpi(evento.target.value as enums.Epi)
                           }
                         >
+                          <option value={enums.Epi.Epi}>{enums.Epi.Epi}</option>
                           <option value={enums.Epi.Epi1}>
                             {enums.Epi.Epi1}
                           </option>
@@ -260,6 +271,7 @@ export const Testes = () => {
                           </option>
                         </S.YoungInput>
                       </div>
+                      {/* {epi === enums.Epi.Epi ? } */}
                       <div>
                         <S.Label400>Informe o número do CA:</S.Label400>
                         <S.InputFormatadoCA
@@ -276,6 +288,14 @@ export const Testes = () => {
                       <div>
                         <S.OutlineButton>Adicionar EPI</S.OutlineButton>
                       </div>
+                      <S.BoxEpis>
+                        {enums.Epi.Epi} | {ca}
+                        <hr />
+                        {enums.Epi.Epi} | {ca}
+                        <hr />
+                        <hr />
+                        <hr />
+                      </S.BoxEpis>
                     </S.InternBox>
                   </S.Box>
                   <S.FullButton>Adicionar outra atividade</S.FullButton>

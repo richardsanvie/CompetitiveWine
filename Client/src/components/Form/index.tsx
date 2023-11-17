@@ -15,6 +15,7 @@ export const Form = () => {
     setIsChecked(!isChecked)
     setEpi(enums.Epi.Epi)
     setAtividade(enums.Atividade.Ativ)
+    setCa('00-0')
   }
 
   const dispatch = useDispatch()
@@ -23,7 +24,7 @@ export const Form = () => {
   const [cpf, setCpf] = useState<any>()
   const [valor, setValor] = useState(enums.estaAtivo.Ativo)
   const [cargo, setCargo] = useState(enums.Cargo.Cargo0)
-  const [atividade, setAtividade] = useState(enums.Atividade.Ativ00)
+  const [atividade, setAtividade] = useState(enums.Atividade.Ativ)
   const [sexo, setSexo] = useState(enums.MascFem.Masculino)
   const [rg, setRg] = useState<any>()
   const [nascimento, setNascimento] = useState<any>()
@@ -132,7 +133,6 @@ export const Form = () => {
               </div>
               <div>
                 <S.Label500>CPF</S.Label500>
-
                 <S.InputFormatado
                   mask="000.000.000-00"
                   value={cpf}
@@ -230,6 +230,9 @@ export const Form = () => {
                         setAtividade(evento.target.value as enums.Atividade)
                       }
                     >
+                      <option value={enums.Atividade.Ativ}>
+                        {enums.Atividade.Ativ}
+                      </option>
                       <option value={enums.Atividade.Ativ00}>
                         {enums.Atividade.Ativ00}
                       </option>
@@ -249,6 +252,7 @@ export const Form = () => {
                             setEpi(evento.target.value as enums.Epi)
                           }
                         >
+                          <option value={enums.Epi.Epi}>{enums.Epi.Epi}</option>
                           <option value={enums.Epi.Epi1}>
                             {enums.Epi.Epi1}
                           </option>

@@ -165,14 +165,25 @@ export const InternBox = styled.div`
   justify-content: space-between;
 `
 
+const BoxPaiAEpis = `
+border-radius: 10px;
+padding: 9px 12px 12px 12px;
+border: 1px solid ${variaveis.azul};
+background-color: ${variaveis.branco};
+margin-top: 11px;
+
+  `
+
 export const Box = styled.div`
-  margin-top: 11px;
   width: 700px;
+  height: 350px;
+  ${BoxPaiAEpis}
+`
+
+export const BoxEpis = styled.div`
+  width: 676px;
   height: 159px;
-  border-radius: 10px;
-  padding: 9px 12px 12px 12px;
-  border: 1px solid ${variaveis.azul};
-  background-color: ${variaveis.branco};
+  ${BoxPaiAEpis}
 `
 
 export const InputFile = styled.div`
