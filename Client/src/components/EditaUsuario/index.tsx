@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, FormEvent, ChangeEvent, useState } from 'react'
 
 import * as S from './styles'
 import { useDispatch } from 'react-redux/es/exports'
@@ -34,6 +34,7 @@ const EditaUsuario = ({
   const [nascimento, setNascimento] = useState(nascimentoOriginal)
   const [epi, setEpi] = useState(epiOriginal)
   const [ca, setCa] = useState(caOriginal)
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
   const handleEditDado = async () => {
     dispatch(
@@ -107,6 +108,14 @@ const EditaUsuario = ({
       await Axios.delete(`http://localhost:3001/delete/${idsea}`)
     } catch (error: any) {
       console.error('Erro ao excluir item:', error.message)
+    }
+  }
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files
+
+    if (files && files.length > 0) {
+      setSelectedFile(files[0])
     }
   }
 
@@ -296,8 +305,13 @@ const EditaUsuario = ({
         </S.Epi>
         <S.BoxAtestado>
           <S.Title>Adicione Atestado de Saúde Ocupacional (opcional):</S.Title>
-          <S.InputFile>Documento 1.png</S.InputFile>
-          <S.FullButton>Selecionar arquivo</S.FullButton>
+          <S.FileInputContainer>
+            {selectedFile && <S.FileName>{selectedFile.name}</S.FileName>}
+          </S.FileInputContainer>
+          <S.FileInputLabel>
+            Escolha um arquivo
+            <S.FileInput type="file" onChange={handleFileChange} />
+          </S.FileInputLabel>
         </S.BoxAtestado>
       </S.BodyEdit>
     </S.Form>
