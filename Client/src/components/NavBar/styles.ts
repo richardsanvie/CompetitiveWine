@@ -26,14 +26,12 @@ export const Card = styled.div`
 
 export const Image1 = styled.img``
 export const Notificacao = styled.div<Props>`
-  display: none;
   position: absolute;
-  top: 19px;
-  right: 240px;
+  top: 391px;
+  left: 34px;
   line-height: 16px;
   width: 13.673px;
   height: 14.015px;
   flex-shrink: 0;
-  background-color: ${variaveis.branco};
   border-radius: 4px;
 `

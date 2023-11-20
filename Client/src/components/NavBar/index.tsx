@@ -1,8 +1,8 @@
 import * as S from './styles'
-import image from '../../image/notf.svg'
+import notf from '../../image/notf.svg'
 
 const images = {
-  nav1: image
+  notf: notf
 }
 
 export type Props = {
@@ -10,19 +10,22 @@ export type Props = {
   onClick?: () => void
   imagem?: string
   to?: string
+  notf?: boolean
 }
 
-const NavBar = ({ ativo, imagem, onClick, to }: Props) => {
+const Testes = ({ ativo, imagem, onClick, to, notf }: Props) => {
   return (
     <S.Container ativo={ativo} onClick={onClick} to={to}>
       <S.Card>
         <img src={imagem} alt="Nav1" />
-        <S.Notificacao>
-          <img src={images.nav1} alt="Nav1" />
-        </S.Notificacao>
+        {notf && (
+          <S.Notificacao notf={notf}>
+            <img src={images.notf} alt="Nav1" />
+          </S.Notificacao>
+        )}
       </S.Card>
     </S.Container>
   )
 }
 
-export default NavBar
+export default Testes

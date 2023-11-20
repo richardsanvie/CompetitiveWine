@@ -7,6 +7,7 @@ import image3 from '../../image/nav3.svg'
 import image4 from '../../image/nav4.svg'
 import image5 from '../../image/nav5.svg'
 import image6 from '../../image/nav6.svg'
+import Testes from '../../pages/Testes'
 
 export const BarraLateral = () => {
   const itemSideNav = localStorage.getItem('selectedItemSideNav')
@@ -55,7 +56,8 @@ export const BarraLateral = () => {
       ativo: item,
       onClick: () => handleItemClick(4),
       imagem: images.nav4,
-      to: '/EmBreveSideBox'
+      to: '/EmBreveSideBox',
+      notf: true
     },
     {
       id: 5,
@@ -93,6 +95,7 @@ export const BarraLateral = () => {
             onClick={item.onClick}
             imagem={item.imagem}
             to={item.to}
+            notf={item.notf}
           />
         ))}
       </S.Container>
