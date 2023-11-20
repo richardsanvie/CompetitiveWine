@@ -15,7 +15,7 @@ git clone https://github.com/richardsanvie/CompetitiveWine
 cd CompetitiveWine
 ```
 
-**2. Configurando o Front-end com React e Vite**
+**2. Configurando o Front-end com React**
 
 ```html
 cd client
