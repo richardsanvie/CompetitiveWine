@@ -19,8 +19,8 @@ const initialState: DadosState = {
       sexo: enums.MascFem.Masculino,
       rg: '1.234.567',
       nascimento: '19/90/1998',
-      epi: enums.Epi.Epi,
-      ca: '12-3'
+      epi: [enums.Epi.Epi],
+      ca: ['11-1']
     },
     {
       nome: 'Maria Oliveira',
@@ -32,8 +32,8 @@ const initialState: DadosState = {
       sexo: enums.MascFem.Feminino,
       rg: '9.876.543',
       nascimento: '19/85/1998',
-      epi: enums.Epi.Epi2,
-      ca: '45-6'
+      epi: [enums.Epi.Epi2],
+      ca: ['45-6']
     },
     {
       nome: 'João Silva',
@@ -45,8 +45,8 @@ const initialState: DadosState = {
       sexo: enums.MascFem.Masculino,
       rg: '1.234.567',
       nascimento: '10/20/1985',
-      epi: enums.Epi.Epi1,
-      ca: '12-3'
+      epi: [enums.Epi.Epi1, enums.Epi.Epi2],
+      ca: ['12-3', '45-8']
     },
     {
       nome: 'Ana Pereira',
@@ -58,8 +58,8 @@ const initialState: DadosState = {
       sexo: enums.MascFem.Feminino,
       rg: '4.567.890',
       nascimento: '05/15/1990',
-      epi: enums.Epi.Epi3,
-      ca: '78-9'
+      epi: [enums.Epi.Epi3, enums.Epi.Epi2],
+      ca: ['78-9', '78-8']
     },
     {
       nome: 'Carlos Santos',
@@ -71,8 +71,8 @@ const initialState: DadosState = {
       sexo: enums.MascFem.Masculino,
       rg: '7.890.123',
       nascimento: '03/08/1982',
-      epi: enums.Epi.Epi1,
-      ca: '34-5'
+      epi: [enums.Epi.Epi1, enums.Epi.Epi3],
+      ca: ['34-5', '54-8']
     }
   ]
 }

@@ -220,6 +220,7 @@ export const InternBox = styled.div`
 export const Box = styled.div`
   margin-top: 11px;
   width: 700px;
+  height: 159px;
   height: auto;
   border-radius: 10px;
   padding: 9px 12px 12px 12px;

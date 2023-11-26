@@ -29,6 +29,7 @@ export const Form: React.FC = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [idsea, setIdsea] = useState<number>()
   const [nome, setNome] = useState('')
   const [cpf, setCpf] = useState<any>()
   const [valor, setValor] = useState(enums.estaAtivo.Ativo)
@@ -50,7 +51,8 @@ export const Form: React.FC = () => {
     rg,
     nascimento,
     epi,
-    ca
+    ca,
+    idsea
   }
 
   const cadastrarDado = (evento: FormEvent) => {
@@ -65,12 +67,12 @@ export const Form: React.FC = () => {
       cpf,
       atividade,
       cargo,
-      9,
+      idsea || 0,
       valor,
       sexo,
       rg,
       nascimento,
-      epi,
+      [epi],
       ca
     )
 

@@ -10,8 +10,8 @@ class Dado {
   sexo: enums.MascFem
   rg: string
   nascimento: string
-  epi: enums.Epi
-  ca: string
+  epi: enums.Epi[]
+  ca: string[]
 
   constructor(
     nome: string,
@@ -23,8 +23,8 @@ class Dado {
     sexo: enums.MascFem,
     rg: string,
     nascimento: string,
-    epi: enums.Epi,
-    ca: string
+    epi: enums.Epi[],
+    ca: string[]
   ) {
     this.nome = nome
     this.cpf = cpf

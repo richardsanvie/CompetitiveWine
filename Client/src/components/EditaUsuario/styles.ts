@@ -7,6 +7,7 @@ interface Props {
   atividade?: enums.Atividade
   cargo?: enums.Cargo
   isChecked?: boolean
+  trash?: boolean
 }
 
 const BotaoPai = `
@@ -73,6 +74,40 @@ export const InputFormatado = styled(IMaskInput)`
 export const InputFormatadoCA = styled(InputFormatado)`
   width: 260px;
   height: 36px;
+`
+export const DivMapTrash = styled.div`
+  height: 36px;
+  width: 136px;
+  display: flex;
+`
+const OutlineButtonPai = `
+  height: 36px;
+  border: 0;
+  margin-top: 27px;
+  font-weight: 400;
+  color: #3a3a3a;
+  background-color: ${variaveis.branco};
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  &:hover {
+    border: solid 1px ${variaveis.azul};
+    color: ${variaveis.azul};
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0.9;
+    cursor: pointer;
+    color: #3a3a3a;
+  }
+`
+
+export const Img = styled.img`
+  height: 21px;
+`
+
+export const OutlineButtonTrash = styled.button`
+  ${OutlineButtonPai}
+  width: 36px;
+  height: 36px;
+  border-radius: 0 10px 10px 0;
 `
 
 export const BodyEdit = styled.div`
@@ -245,7 +280,7 @@ export const Epi = styled.div<Props>`
 export const Box = styled.div<Props>`
   margin-top: 11px;
   width: 700px;
-  height: 159px;
+  height: auto;
   border-radius: 10px;
   padding: 9px 12px 12px 12px;
   border: 1px solid ${variaveis.azul};
@@ -259,29 +294,13 @@ export const FullInput = styled.select<Props>`
   background-color: ${variaveis.branco};
   margin-bottom: 12px;
 `
-
-export const OutlineButton = styled.button`
-  height: 36px;
-  width: 136px;
-  border: 0;
-  font-size: 16px;
-  font-weight: 400;
-  color: #${variaveis.cinzaEscuro};
-  background-color: ${variaveis.branco};
-  margin-top: 27px;
-  font-family: 'Roboto', sans-serif;
-  align-items: center;
+export const OutlineButton = styled.button<Props>`
+  ${OutlineButtonPai}
+  width: ${(props) => (props.trash ? '100px' : '136px')};
   border-radius: 10px;
-  padding: 5px;
+  font-size: ${(props) => (props.trash ? '12px' : '16px')};
   &:hover {
-    border: solid 1px ${variaveis.azul};
-    color: ${variaveis.azul};
-    transition: background-color 0.3s, color 0.3s;
-    opacity: 0.9;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 400;
-    color: #${variaveis.cinzaEscuro};
+    border-radius: ${(props) => (props.trash ? '10px 0 0 10px' : '10px')};
   }
 `
 

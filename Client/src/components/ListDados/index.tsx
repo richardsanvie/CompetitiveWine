@@ -92,11 +92,10 @@ export const ListDados: React.FC<Props> = ({ atualizarInformacao }: Props) => {
             </S.P>
           </S.BarraAcoes>
           {LDados &&
-            LDados.map((t) => (
-              <div key={t.idsea}>
+            LDados.map((t, index) => (
+              <div key={index}>
                 <S.ControllName>
                   <Dados
-                    key={t.idsea}
                     nome={t.nome}
                     cpf={t.cpf}
                     atividade={t.atividade}
@@ -110,7 +109,6 @@ export const ListDados: React.FC<Props> = ({ atualizarInformacao }: Props) => {
                 {openButton === t.cpf && (
                   <EditaUsuario
                     idsea={t.idsea}
-                    key={t.idsea}
                     nome={t.nome}
                     cpf={t.cpf}
                     atividade={t.atividade}

@@ -28,49 +28,49 @@ const Menu = ({ informacaoCompartilhada }: Props) => {
     },
     {
       id: 2,
-      legenda: 'ITEM 2',
+      legenda: 'ITEM 1',
       to: '/embreve',
       onClick: () => onItemClick(2)
     },
     {
       id: 3,
-      legenda: 'ITEM 3',
+      legenda: 'ITEM 1',
       to: '/embreve',
       onClick: () => onItemClick(3)
     },
     {
       id: 4,
-      legenda: 'ITEM 4',
+      legenda: 'ITEM 1',
       to: '/embreve',
       onClick: () => onItemClick(4)
     },
     {
       id: 5,
-      legenda: 'ITEM 5',
+      legenda: 'ITEM 1',
       to: '/embreve',
       onClick: () => onItemClick(5)
     },
     {
       id: 6,
-      legenda: 'ITEM 6',
+      legenda: 'ITEM 1',
       to: '/embreve',
       onClick: () => onItemClick(6)
     },
     {
       id: 7,
-      legenda: 'ITEM 7',
+      legenda: 'ITEM 1',
       to: '/embreve',
       onClick: () => onItemClick(7)
     },
     {
       id: 8,
-      legenda: 'ITEM 8',
+      legenda: 'ITEM 1',
       to: '/embreve',
       onClick: () => onItemClick(8)
     },
     {
       id: 9,
-      legenda: 'ITEM 9',
+      legenda: 'ITEM 1',
       to: '/embreve',
       onClick: () => onItemClick(9)
     }

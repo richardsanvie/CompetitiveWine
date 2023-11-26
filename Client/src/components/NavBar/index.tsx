@@ -13,7 +13,7 @@ export type Props = {
   notf?: boolean
 }
 
-const Testes = ({ ativo, imagem, onClick, to, notf }: Props) => {
+const NavBar = ({ ativo, imagem, onClick, to, notf }: Props) => {
   return (
     <S.Container ativo={ativo} onClick={onClick} to={to}>
       <S.Card>
@@ -28,4 +28,4 @@ const Testes = ({ ativo, imagem, onClick, to, notf }: Props) => {
   )
 }
 
-export default Testes
+export default NavBar

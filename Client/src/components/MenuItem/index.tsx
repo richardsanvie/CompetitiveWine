@@ -10,7 +10,7 @@ export type Props = {
 
 export const MenuItem = ({ legenda, complete, ativo, to, onClick }: Props) => (
   <S.Container to={to}>
-    <S.Box ativo={ativo} onClick={onClick}>
+    <S.Box ativo={ativo} onClick={onClick} complete={complete}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="32"

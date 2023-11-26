@@ -6,6 +6,11 @@ import { remover, editar } from '../../store/reducers/dados'
 import * as enums from '../../utils/enums/CargoAtividade'
 import Axios from 'axios'
 import Dado from '../../models/Dado'
+import Lixo from '../../image/lixo.png'
+
+const image = {
+  Lixo: Lixo
+}
 
 type Props = Dado
 
@@ -23,6 +28,8 @@ const EditaUsuario = ({
   ca: caOriginal
 }: Props) => {
   const [isChecked, setIsChecked] = useState(false)
+  const [trash, setTrash] = useState(false)
+
   const dispatch = useDispatch()
   const [nome, setNome] = useState('')
   const [cpf, setCpf] = useState(cpfOriginal)
@@ -32,8 +39,10 @@ const EditaUsuario = ({
   const [sexo, setSexo] = useState(sexoOriginal)
   const [rg, setRg] = useState(rgOriginal)
   const [nascimento, setNascimento] = useState(nascimentoOriginal)
-  const [epi, setEpi] = useState(epiOriginal)
-  const [ca, setCa] = useState(caOriginal)
+  const [epi, setEpi] = useState<any>(epiOriginal)
+  const [ca, setCa] = useState<any>(caOriginal)
+  const [phones, setPhones] = useState<any>([''])
+
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
   const handleEditDado = async () => {
@@ -73,18 +82,18 @@ const EditaUsuario = ({
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked)
-    setEpi(enums.Epi.Epi)
+    setEpi([enums.Epi.Epi])
     setAtividade(enums.Atividade.Ativ)
     setCa('00-0')
   }
 
   useEffect(() => {
-    if (epi === enums.Epi.Epi) {
+    if (epi[0] === enums.Epi.Epi) {
       setIsChecked(true)
     } else {
       setIsChecked(false)
     }
-  }, [epi, enums])
+  }, [epi[0], enums])
 
   useEffect(() => {
     if (cpfOriginal !== cpf) {
@@ -117,6 +126,43 @@ const EditaUsuario = ({
     if (files && files.length > 0) {
       setSelectedFile(files[0])
     }
+  }
+
+  const handleAddInputButton = (e: { preventDefault: () => void }) => {
+    if (epi.length < 3) {
+      e.preventDefault()
+      setEpi([...epi, ['']])
+    }
+  }
+
+  const handleChangeEpi = (
+    evento: React.ChangeEvent<HTMLSelectElement>,
+    index: number
+  ) => {
+    setEpi((prevEpi: any) => {
+      const newEpi = [...prevEpi]
+      newEpi[index] = evento.target.value
+      return newEpi
+    })
+    epi[index] = evento.target.value as enums.Epi
+    setEpi([...epi])
+  }
+
+  const handleRemoteField = (position: number) => {
+    if (epi.length > 1) {
+      setEpi([...epi.filter((_: any, index: number) => index !== position)])
+    }
+  }
+
+  const handleChangeCa = (
+    evento: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    setCa((prevCa: any) => {
+      const newCa = [...prevCa]
+      newCa[index] = evento.target.value
+      return newCa
+    })
   }
 
   return (
@@ -246,58 +292,67 @@ const EditaUsuario = ({
           ) : (
             <>
               <S.Box>
-                <S.Label400>Atividade</S.Label400>
-                <S.FullInput
-                  defaultValue={atividade}
-                  onChange={(evento) =>
-                    setAtividade(evento.target.value as enums.Atividade)
-                  }
-                >
-                  <option value={enums.Atividade.Ativ}>
-                    {enums.Atividade.Ativ}
-                  </option>
-                  <option value={enums.Atividade.Ativ00}>
-                    {enums.Atividade.Ativ00}
-                  </option>
-                  <option value={enums.Atividade.Ativ01}>
-                    {enums.Atividade.Ativ01}
-                  </option>
-                  <option value={enums.Atividade.Ativ02}>
-                    {enums.Atividade.Ativ02}
-                  </option>
-                </S.FullInput>
-                <S.InternBox>
-                  <div>
-                    <S.Label400>Selecione o EPI:</S.Label400>
-                    <S.YoungInput
-                      defaultValue={epi}
-                      onChange={(evento) =>
-                        setEpi(evento.target.value as enums.Epi)
-                      }
-                    >
-                      <option value={enums.Epi.Epi}>{enums.Epi.Epi}</option>
-                      <option value={enums.Epi.Epi1}>{enums.Epi.Epi1}</option>
-                      <option value={enums.Epi.Epi2}>{enums.Epi.Epi2}</option>
-                      <option value={enums.Epi.Epi3}>{enums.Epi.Epi3}</option>
-                    </S.YoungInput>
+                {epi.map((phone: string, index: number) => (
+                  <div key={index}>
+                    <S.InternBox>
+                      <div>
+                        <S.Label400>Selecione o EPI:</S.Label400>
+                        <S.YoungInput
+                          key={index}
+                          name="epi"
+                          defaultValue={epi[index]}
+                          onChange={(evento) => handleChangeEpi(evento, index)}
+                        >
+                          <option value={enums.Epi.Epi}>{enums.Epi.Epi}</option>
+                          <option value={enums.Epi.Epi1}>
+                            {enums.Epi.Epi1}
+                          </option>
+                          <option value={enums.Epi.Epi2}>
+                            {enums.Epi.Epi2}
+                          </option>
+                          <option value={enums.Epi.Epi3}>
+                            {enums.Epi.Epi3}
+                          </option>
+                        </S.YoungInput>
+                      </div>
+                      <div>
+                        <S.Label400>Informe o número do CA:</S.Label400>
+                        <S.InputFormatadoCA
+                          mask="00-0"
+                          key={index}
+                          defaultValue={ca[index]}
+                          onAccept={(value) => {
+                            handleChangeCa(
+                              {
+                                target: { value }
+                              } as React.ChangeEvent<HTMLInputElement>,
+                              index
+                            )
+                          }}
+                          onChange={(
+                            evento: React.ChangeEvent<HTMLInputElement>
+                          ) => handleChangeCa(evento, index)}
+                        />
+                      </div>
+                      <S.DivMapTrash>
+                        <S.OutlineButton
+                          onClick={handleAddInputButton}
+                          onMouseLeave={() => setTrash(true)}
+                          trash={trash}
+                        >
+                          Adicionar EPI
+                        </S.OutlineButton>
+                        {trash && (
+                          <S.OutlineButtonTrash
+                            onClick={() => handleRemoteField(index)}
+                          >
+                            <S.Img src={image.Lixo} alt="" />
+                          </S.OutlineButtonTrash>
+                        )}
+                      </S.DivMapTrash>
+                    </S.InternBox>
                   </div>
-                  <div>
-                    <S.Label400>Informe o número do CA:</S.Label400>
-                    <S.InputFormatadoCA
-                      mask="00-0"
-                      defaultValue={ca}
-                      onAccept={(value) => {
-                        setCa(value)
-                      }}
-                      onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                        setCa(event.target.value)
-                      }
-                    />
-                  </div>
-                  <div>
-                    <S.OutlineButton>Adicionar EPI</S.OutlineButton>
-                  </div>
-                </S.InternBox>
+                ))}
               </S.Box>
               <S.FullButton>Adicionar outra atividade</S.FullButton>
             </>
