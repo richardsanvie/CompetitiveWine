@@ -15,7 +15,7 @@ git clone https://github.com/richardsanvie/CompetitiveWine
 cd CompetitiveWine
 ```
 
-**2. Configurando o Front-end com React e Vite**
+**2. Configurando o Front-end com React**
 
 ```html
 cd client
@@ -56,6 +56,7 @@ Front-end:
 
 - Axios: Cliente HTTP para fazer requisições AJAX.
 - React: Biblioteca para construção de interfaces de usuário.
+- Redux: 
 - Javascript: Linguagem de programação para desenvolvimento front-end.
 - HTML: Linguagem de marcação para estruturação de páginas web.
 - CSS 3 / HTML5: Estilos e marcação mais recentes para páginas web.
