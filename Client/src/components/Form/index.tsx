@@ -2,19 +2,38 @@ import { useDispatch } from 'react-redux'
 import React, { FormEvent, ChangeEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Axios from 'axios'
+import Lixo from '../../image/lixo.png'
 
 import * as S from './styles'
 import * as enums from '../../utils/enums/CargoAtividade'
 import Dado from '../../models/Dado'
 import { cadastrar } from '../../store/reducers/dados'
 
-export const Form: React.FC = () => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
-  const [isChecked, setIsChecked] = useState(false)
+const image = {
+  Lixo: Lixo
+}
 
-  const handleCheckboxChangeLocal = () => {
+export const Form = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const [idsea, setIdsea] = useState<number>()
+  const [trash, setTrash] = useState(false)
+  const [isChecked, setIsChecked] = useState(false)
+  const [epi, setEpi] = useState<any>([enums.Epi.Epi])
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [nome, setNome] = useState('')
+  const [cpf, setCpf] = useState<any>()
+  const [valor, setValor] = useState(enums.estaAtivo.Ativo)
+  const [cargo, setCargo] = useState(enums.Cargo.Cargo0)
+  const [atividade, setAtividade] = useState(enums.Atividade.Ativ)
+  const [sexo, setSexo] = useState(enums.MascFem.Masculino)
+  const [rg, setRg] = useState<any>()
+  const [nascimento, setNascimento] = useState<any>()
+  const [ca, setCa] = useState<any>([''])
+
+  const handleCheckboxChange = () => {
     setIsChecked(!isChecked)
-    setEpi(enums.Epi.Epi)
+    setEpi([enums.Epi.Epi])
     setAtividade(enums.Atividade.Ativ)
     setCa('00-0')
   }
@@ -27,19 +46,43 @@ export const Form: React.FC = () => {
     }
   }
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const [idsea, setIdsea] = useState<number>()
-  const [nome, setNome] = useState('')
-  const [cpf, setCpf] = useState<any>()
-  const [valor, setValor] = useState(enums.estaAtivo.Ativo)
-  const [cargo, setCargo] = useState(enums.Cargo.Cargo0)
-  const [atividade, setAtividade] = useState(enums.Atividade.Ativ)
-  const [sexo, setSexo] = useState(enums.MascFem.Masculino)
-  const [rg, setRg] = useState<any>()
-  const [nascimento, setNascimento] = useState<any>()
-  const [epi, setEpi] = useState(enums.Epi.Epi)
-  const [ca, setCa] = useState<any>()
+  const handleAddInputButton = (e: { preventDefault: () => void }) => {
+    e.preventDefault()
+    if (epi.length < 3) {
+      e.preventDefault()
+      setEpi([...epi, ['']])
+    }
+  }
+
+  const handleChangeEpi = (
+    evento: React.ChangeEvent<HTMLSelectElement>,
+    index: number
+  ) => {
+    setEpi((prevEpi: any) => {
+      const newEpi = [...prevEpi]
+      newEpi[index] = evento.target.value
+      return newEpi
+    })
+    epi[index] = evento.target.value as enums.Epi
+    setEpi([...epi])
+  }
+
+  const handleRemoteField = (position: number) => {
+    if (epi.length > 1) {
+      setEpi([...epi.filter((_: any, index: number) => index !== position)])
+    }
+  }
+
+  const handleChangeCa = (
+    evento: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    setCa((prevCa: any) => {
+      const newCa = [...prevCa]
+      newCa[index] = evento.target.value
+      return newCa
+    })
+  }
 
   const novoDado = {
     nome,
@@ -50,9 +93,8 @@ export const Form: React.FC = () => {
     sexo,
     rg,
     nascimento,
-    epi,
     ca,
-    idsea
+    epi
   }
 
   const cadastrarDado = (evento: FormEvent) => {
@@ -72,13 +114,14 @@ export const Form: React.FC = () => {
       sexo,
       rg,
       nascimento,
-      [epi],
+      epi,
       ca
     )
 
     dispatch(cadastrar(dadoParaAdicionar))
     navigate('/')
   }
+
   return (
     <>
       <S.Gestao>
@@ -204,7 +247,7 @@ export const Form: React.FC = () => {
                 <S.Select
                   value={cargo}
                   onChange={(evento) =>
-                    setCargo(evento.target.value as enums.Cargo.Cargo0)
+                    setCargo(evento.target.value as enums.Cargo)
                   }
                 >
                   <option value={enums.Cargo.Cargo0}>
@@ -225,7 +268,7 @@ export const Form: React.FC = () => {
                 <S.CheckboxInput
                   type="checkbox"
                   checked={isChecked}
-                  onChange={handleCheckboxChangeLocal}
+                  onChange={handleCheckboxChange}
                 />
                 <S.Label400Span>O trabalhador não usa EPI.</S.Label400Span>
               </div>
@@ -234,64 +277,71 @@ export const Form: React.FC = () => {
               ) : (
                 <>
                   <S.Box>
-                    <S.Label400>Atividade</S.Label400>
-                    <S.FullInput
-                      defaultValue={atividade}
-                      onChange={(evento) =>
-                        setAtividade(evento.target.value as enums.Atividade)
-                      }
-                    >
-                      <option value={enums.Atividade.Ativ}>
-                        {enums.Atividade.Ativ}
-                      </option>
-                      <option value={enums.Atividade.Ativ00}>
-                        {enums.Atividade.Ativ00}
-                      </option>
-                      <option value={enums.Atividade.Ativ01}>
-                        {enums.Atividade.Ativ01}
-                      </option>
-                      <option value={enums.Atividade.Ativ02}>
-                        {enums.Atividade.Ativ02}
-                      </option>
-                    </S.FullInput>
-                    <S.InternBox>
-                      <div>
-                        <S.Label400>Selecione o EPI:</S.Label400>
-                        <S.YoungInput
-                          defaultValue={epi}
-                          onChange={(evento) =>
-                            setEpi(evento.target.value as enums.Epi)
-                          }
-                        >
-                          <option value={enums.Epi.Epi}>{enums.Epi.Epi}</option>
-                          <option value={enums.Epi.Epi1}>
-                            {enums.Epi.Epi1}
-                          </option>
-                          <option value={enums.Epi.Epi2}>
-                            {enums.Epi.Epi2}
-                          </option>
-                          <option value={enums.Epi.Epi3}>
-                            {enums.Epi.Epi3}
-                          </option>
-                        </S.YoungInput>
+                    {epi.map((epi: string[], index: number) => (
+                      <div key={index}>
+                        <S.InternBox>
+                          <div>
+                            <S.Label400>Selecione o EPI:</S.Label400>
+                            <S.YoungInput
+                              key={index}
+                              name="epi"
+                              defaultValue={epi[index]}
+                              onChange={(evento) =>
+                                handleChangeEpi(evento, index)
+                              }
+                            >
+                              <option value={enums.Epi.Epi}>
+                                {enums.Epi.Epi}
+                              </option>
+                              <option value={enums.Epi.Epi1}>
+                                {enums.Epi.Epi1}
+                              </option>
+                              <option value={enums.Epi.Epi2}>
+                                {enums.Epi.Epi2}
+                              </option>
+                              <option value={enums.Epi.Epi3}>
+                                {enums.Epi.Epi3}
+                              </option>
+                            </S.YoungInput>
+                          </div>
+                          <div>
+                            <S.Label400>Informe o número do CA:</S.Label400>
+                            <S.InputFormatadoCA
+                              mask="00-0"
+                              key={index}
+                              defaultValue={ca[index]}
+                              onAccept={(value) => {
+                                handleChangeCa(
+                                  {
+                                    target: { value }
+                                  } as React.ChangeEvent<HTMLInputElement>,
+                                  index
+                                )
+                              }}
+                              onChange={(
+                                evento: React.ChangeEvent<HTMLInputElement>
+                              ) => handleChangeCa(evento, index)}
+                            />
+                          </div>
+                          <S.DivMapTrash>
+                            <S.OutlineButton
+                              onClick={handleAddInputButton}
+                              onMouseLeave={() => setTrash(true)}
+                              trash={trash}
+                            >
+                              Adicionar EPI
+                            </S.OutlineButton>
+                            {trash && (
+                              <S.OutlineButtonTrash
+                                onClick={() => handleRemoteField(index)}
+                              >
+                                <S.Img src={image.Lixo} alt="" />
+                              </S.OutlineButtonTrash>
+                            )}
+                          </S.DivMapTrash>
+                        </S.InternBox>
                       </div>
-                      <div>
-                        <S.Label400>Informe o número do CA:</S.Label400>
-                        <S.InputFormatadoCA
-                          mask="00-0"
-                          defaultValue={ca}
-                          onAccept={(value) => {
-                            setCa(value)
-                          }}
-                          onChange={(
-                            event: React.ChangeEvent<HTMLInputElement>
-                          ) => setCa(event.target.value)}
-                        />
-                      </div>
-                      <div>
-                        <S.OutlineButton>Adicionar EPI</S.OutlineButton>
-                      </div>
-                    </S.InternBox>
+                    ))}
                   </S.Box>
                   <S.FullButton>Adicionar outra atividade</S.FullButton>
                 </>
