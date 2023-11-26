@@ -247,6 +247,7 @@ export const YoungInput = styled.select<Props>`
   border: 1px solid ${variaveis.azul};
   background-color: ${variaveis.branco};
   padding: 5px;
+  margin-bottom: 5px;
 `
 
 export const YoungInputCA = styled.input<Props>`
@@ -258,9 +259,9 @@ export const YoungInputCA = styled.input<Props>`
   padding: 5px;
 `
 
-export const InternBox = styled.div`
+export const InternBox = styled.div<Props>`
   width: 678px;
-  height: 63px;
+  height: ${(props) => (props.trash ? '63px' : 'auto')};
   border: 0;
   display: grid;
   grid-template-columns: 266px 266px 146px;

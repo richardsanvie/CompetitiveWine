@@ -277,6 +277,27 @@ export const Form = () => {
               ) : (
                 <>
                   <S.Box>
+                    <S.Label400>Selecione a atividade:</S.Label400>
+                    <S.FullInput
+                      name="epi"
+                      defaultValue={atividade}
+                      onChange={(evento) =>
+                        setCargo(evento.target.value as enums.Cargo)
+                      }
+                    >
+                      <option value={enums.Atividade.Ativ}>
+                        {enums.Atividade.Ativ}
+                      </option>
+                      <option value={enums.Atividade.Ativ00}>
+                        {enums.Atividade.Ativ00}
+                      </option>
+                      <option value={enums.Atividade.Ativ01}>
+                        {enums.Atividade.Ativ01}
+                      </option>
+                      <option value={enums.Atividade.Ativ02}>
+                        {enums.Atividade.Ativ02}
+                      </option>
+                    </S.FullInput>
                     {epi.map((epi: string[], index: number) => (
                       <div key={index}>
                         <S.InternBox>
