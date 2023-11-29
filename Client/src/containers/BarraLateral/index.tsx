@@ -87,14 +87,14 @@ export const BarraLateral = () => {
         <rect width="57" height="41" fill="white" />
       </svg>
       <S.Container>
-        {navItems.map((item) => (
+        {navItems.map((n) => (
           <NavBar
-            key={item.id}
-            ativo={selectedItemSideNav === item.id}
-            onClick={item.onClick}
-            imagem={item.imagem}
-            to={item.to}
-            notf={item.notf}
+            key={n.id}
+            ativo={selectedItemSideNav === n.id}
+            onClick={n.onClick}
+            imagem={n.imagem}
+            to={n.to}
+            notf={n.notf}
           />
         ))}
       </S.Container>
