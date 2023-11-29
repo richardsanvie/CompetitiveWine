@@ -1,12 +1,12 @@
-import React, { useEffect, FormEvent, ChangeEvent, useState } from 'react'
-
-import * as S from './styles'
+import React, { useEffect, ChangeEvent, useState } from 'react'
 import { useDispatch } from 'react-redux/es/exports'
+
 import { remover, editar } from '../../store/reducers/dados'
 import * as enums from '../../utils/enums/CargoAtividade'
 import Axios from 'axios'
 import Dado from '../../models/Dado'
 import Lixo from '../../image/lixo.png'
+import * as S from './styles'
 
 const image = {
   Lixo: Lixo
@@ -41,7 +41,6 @@ const EditaUsuario = ({
   const [nascimento, setNascimento] = useState(nascimentoOriginal)
   const [epi, setEpi] = useState<any>(epiOriginal)
   const [ca, setCa] = useState<any>(caOriginal)
-  const [phones, setPhones] = useState<any>([''])
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
@@ -88,12 +87,16 @@ const EditaUsuario = ({
   }
 
   useEffect(() => {
-    if (epi[0] === enums.Epi.Epi) {
+    if (
+      epi[0] === enums.Epi.Epi ||
+      atividade === enums.Atividade.Ativ ||
+      ca === '00-0'
+    ) {
       setIsChecked(true)
     } else {
       setIsChecked(false)
     }
-  }, [epi[0], enums])
+  }, [])
 
   useEffect(() => {
     if (cpfOriginal !== cpf) {
@@ -221,7 +224,7 @@ const EditaUsuario = ({
             <S.Label500>RG</S.Label500>
             <S.InputFormatado
               mask="0.000.000"
-              value={rg}
+              defaultValue={rg}
               onAccept={(value) => {
                 setRg(value)
               }}

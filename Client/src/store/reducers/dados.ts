@@ -101,6 +101,7 @@ const dadosSlice = createSlice({
         alert('Esse Cpf já está cadastrado')
       } else {
         state.itens.push(action.payload)
+        alert('Cadastrado!')
       }
     }
   }

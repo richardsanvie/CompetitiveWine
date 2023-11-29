@@ -2,8 +2,8 @@ import { useDispatch } from 'react-redux'
 import React, { FormEvent, ChangeEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Axios from 'axios'
-import Lixo from '../../image/lixo.png'
 
+import Lixo from '../../image/lixo.png'
 import * as S from './styles'
 import * as enums from '../../utils/enums/CargoAtividade'
 import Dado from '../../models/Dado'
@@ -101,11 +101,9 @@ export const Form = () => {
 
   const cadastrarDado = (evento: FormEvent) => {
     Axios.post('http://localhost:3001/register', novoDado).then((response) => {
-      console.log(response)
+      console.log('response: ', response)
     })
-
     evento.preventDefault()
-
     const dadoParaAdicionar = new Dado(
       nome,
       cpf,
@@ -119,7 +117,6 @@ export const Form = () => {
       epi,
       ca
     )
-
     dispatch(cadastrar(dadoParaAdicionar))
     setNovo(false)
   }

@@ -99,7 +99,7 @@ export const ListDados: React.FC<Props> = ({ atualizarInformacao }: Props) => {
             {LDados &&
               LDados.map((t, index) => (
                 <div key={index}>
-                  <S.ControllName>
+                  <S.ControllName onClick={() => toggleButton(t.cpf)}>
                     <Dados
                       nome={t.nome}
                       cpf={t.cpf}
@@ -107,9 +107,7 @@ export const ListDados: React.FC<Props> = ({ atualizarInformacao }: Props) => {
                       cargo={t.cargo}
                       valor={t.valor}
                     />
-                    <S.Mais onClick={() => toggleButton(t.cpf)}>
-                      {openButton === t.cpf ? 'Sair' : '...'}
-                    </S.Mais>
+                    <S.Mais>{openButton === t.cpf ? 'Sair' : '...'}</S.Mais>
                   </S.ControllName>
                   {openButton === t.cpf && (
                     <EditaUsuario

@@ -56,6 +56,10 @@ export const ControllName = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 14px;
+  &:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
 `
 export const Dados = styled.div`
   padding: 5px 0 18px 15px;
