@@ -5,74 +5,58 @@ import { handleItemClick } from '../../utils/handleItemClickMenu'
 
 export type Props = {
   ativo?: boolean
-  onClick?: () => void
   imagem?: string
   informacaoCompartilhada: string
 }
 
 const Menu = ({ informacaoCompartilhada }: Props) => {
-  const itemNav = localStorage.getItem('selectedItem')
-  const [selectedItem, setSelectedItem] = useState(
-    itemNav ? parseInt(itemNav, 10) : 1
-  )
-  const onItemClick = (itemId: number) =>
-    handleItemClick(itemId, setSelectedItem)
-
+  const currentPath = window.location.pathname
   const menuItems = [
     {
       id: 1,
       legenda: 'ITEM 1',
       to: '/',
-      onClick: () => onItemClick(1),
       complete: { informacaoCompartilhada }
     },
     {
       id: 2,
       legenda: 'ITEM 1',
-      to: '/embreve2',
-      onClick: () => onItemClick(2)
+      to: '/embreve2'
     },
     {
       id: 3,
       legenda: 'ITEM 1',
-      to: '/embreve3',
-      onClick: () => onItemClick(3)
+      to: '/embreve3'
     },
     {
       id: 4,
       legenda: 'ITEM 1',
-      to: '/embreve4',
-      onClick: () => onItemClick(4)
+      to: '/embreve4'
     },
     {
       id: 5,
       legenda: 'ITEM 1',
-      to: '/embreve5',
-      onClick: () => onItemClick(5)
+      to: '/embreve5'
     },
     {
       id: 6,
       legenda: 'ITEM 1',
-      to: '/embreve6',
-      onClick: () => onItemClick(6)
+      to: '/embreve6'
     },
     {
       id: 7,
       legenda: 'ITEM 1',
-      to: '/embreve7',
-      onClick: () => onItemClick(7)
+      to: '/embreve7'
     },
     {
       id: 8,
       legenda: 'ITEM 1',
-      to: '/embreve8',
-      onClick: () => onItemClick(8)
+      to: '/embreve8'
     },
     {
       id: 9,
       legenda: 'ITEM 1',
-      to: '/embreve9',
-      onClick: () => onItemClick(9)
+      to: '/embreve9'
     }
   ]
 
@@ -103,11 +87,10 @@ const Menu = ({ informacaoCompartilhada }: Props) => {
               <li key={item.id}>
                 <MenuItem
                   legenda={item.legenda}
-                  ativo={selectedItem === item.id}
+                  ativo={currentPath === item.to}
                   to={item.to}
                   complete={item.complete}
-                  onClick={item.onClick}
-                ></MenuItem>
+                />
               </li>
             ))}
           </S.Ul>
