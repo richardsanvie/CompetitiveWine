@@ -151,7 +151,7 @@ export const ButtonConcluido = styled.div<Props>`
   }
 `
 
-export const AdicionarFuncionarios = styled(Link)`
+export const AdicionarFuncionarios = styled.button`
   height: 60px;
   width: 100%;
   padding: 21px;

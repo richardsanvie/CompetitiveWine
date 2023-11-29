@@ -119,8 +119,13 @@ export const Header = styled.header`
   display: flex;
   align-itens: center;
 `
-export const Voltar = styled(Link)`
+export const Voltar = styled.div`
   margin-right: 14px;
+  &:hover {
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0.9;
+    cursor: pointer;
+  }
 `
 export const Body = styled.div`
   padding: 35px 8px 26px 19px;

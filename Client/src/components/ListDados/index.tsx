@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import EditaUsuario from '../EditaUsuario'
 import { RootReducer } from '../../store'
 import * as enums from '../../utils/enums/CargoAtividade'
+import { Form } from '../Form'
 
 export type Props = {
   valor?: enums.estaAtivo
@@ -14,6 +15,7 @@ export type Props = {
 }
 
 export const ListDados: React.FC<Props> = ({ atualizarInformacao }: Props) => {
+  const [novo, setNovo] = useState(false)
   const [listDb, setListDb] = useState<any[]>([])
 
   const { itens } = useSelector((state: RootReducer) => state.dados)
@@ -71,71 +73,75 @@ export const ListDados: React.FC<Props> = ({ atualizarInformacao }: Props) => {
 
   return (
     <>
-      <S.Gestao>
-        <S.Title>Funcionários</S.Title>
-        <S.Body>
-          <S.AdicionarFuncionarios to="/novo">
-            + Adicionar Funcionário
-          </S.AdicionarFuncionarios>
-          <S.BarraAcoes>
-            <div>
-              <S.Button onClick={() => setHandleShowOnlyActivated(true)}>
-                Ver apenas ativos
-              </S.Button>
-              <S.Button onClick={() => setHandleShowOnlyActivated(false)}>
-                Limpar Filtros
-              </S.Button>
-            </div>
-            <S.P>
-              Ativos {LDados.length}/
-              {listDb.length > 0 ? listDb.length : itens.length}
-            </S.P>
-          </S.BarraAcoes>
-          {LDados &&
-            LDados.map((t, index) => (
-              <div key={index}>
-                <S.ControllName>
-                  <Dados
-                    nome={t.nome}
-                    cpf={t.cpf}
-                    atividade={t.atividade}
-                    cargo={t.cargo}
-                    valor={t.valor}
-                  />
-                  <S.Mais onClick={() => toggleButton(t.cpf)}>
-                    {openButton === t.cpf ? 'Sair' : '...'}
-                  </S.Mais>
-                </S.ControllName>
-                {openButton === t.cpf && (
-                  <EditaUsuario
-                    idsea={t.idsea}
-                    nome={t.nome}
-                    cpf={t.cpf}
-                    atividade={t.atividade}
-                    cargo={t.cargo}
-                    valor={t.valor}
-                    sexo={t.sexo}
-                    rg={t.rg}
-                    nascimento={t.nascimento}
-                    epi={t.epi}
-                    ca={t.ca}
-                  />
-                )}
+      {novo ? (
+        <Form />
+      ) : (
+        <S.Gestao>
+          <S.Title>Funcionários</S.Title>
+          <S.Body>
+            <S.AdicionarFuncionarios onClick={() => setNovo(true)}>
+              + Adicionar Funcionário
+            </S.AdicionarFuncionarios>
+            <S.BarraAcoes>
+              <div>
+                <S.Button onClick={() => setHandleShowOnlyActivated(true)}>
+                  Ver apenas ativos
+                </S.Button>
+                <S.Button onClick={() => setHandleShowOnlyActivated(false)}>
+                  Limpar Filtros
+                </S.Button>
               </div>
-            ))}
-          <S.Conclusao>
-            <S.ConclusaoP>A etapa está concluída?</S.ConclusaoP>
-            <S.ButtonConcluido
-              atualizarInformacao={atualizarInformacao}
-              onClick={handleClick}
-            >
-              <span className="toggle-switch">
-                <span className="toggle-knob"></span>
-              </span>
-            </S.ButtonConcluido>
-          </S.Conclusao>
-        </S.Body>
-      </S.Gestao>
+              <S.P>
+                Ativos {LDados.length}/
+                {listDb.length > 0 ? listDb.length : itens.length}
+              </S.P>
+            </S.BarraAcoes>
+            {LDados &&
+              LDados.map((t, index) => (
+                <div key={index}>
+                  <S.ControllName>
+                    <Dados
+                      nome={t.nome}
+                      cpf={t.cpf}
+                      atividade={t.atividade}
+                      cargo={t.cargo}
+                      valor={t.valor}
+                    />
+                    <S.Mais onClick={() => toggleButton(t.cpf)}>
+                      {openButton === t.cpf ? 'Sair' : '...'}
+                    </S.Mais>
+                  </S.ControllName>
+                  {openButton === t.cpf && (
+                    <EditaUsuario
+                      idsea={t.idsea}
+                      nome={t.nome}
+                      cpf={t.cpf}
+                      atividade={t.atividade}
+                      cargo={t.cargo}
+                      valor={t.valor}
+                      sexo={t.sexo}
+                      rg={t.rg}
+                      nascimento={t.nascimento}
+                      epi={t.epi}
+                      ca={t.ca}
+                    />
+                  )}
+                </div>
+              ))}
+            <S.Conclusao>
+              <S.ConclusaoP>A etapa está concluída?</S.ConclusaoP>
+              <S.ButtonConcluido
+                atualizarInformacao={atualizarInformacao}
+                onClick={handleClick}
+              >
+                <span className="toggle-switch">
+                  <span className="toggle-knob"></span>
+                </span>
+              </S.ButtonConcluido>
+            </S.Conclusao>
+          </S.Body>
+        </S.Gestao>
+      )}
     </>
   )
 }
