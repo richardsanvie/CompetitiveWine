@@ -121,7 +121,7 @@ export const Form = () => {
     )
 
     dispatch(cadastrar(dadoParaAdicionar))
-    navigate('/')
+    setNovo(false)
   }
 
   return (
