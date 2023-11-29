@@ -10,19 +10,6 @@ type DadosState = {
 const initialState: DadosState = {
   itens: [
     {
-      nome: 'Astolfo Menezes Silva',
-      cpf: '124.798.987-00',
-      atividade: enums.Atividade.Ativ,
-      cargo: enums.Cargo.Cargo1,
-      idsea: 71,
-      valor: enums.estaAtivo.Ativo,
-      sexo: enums.MascFem.Masculino,
-      rg: '1.234.567',
-      nascimento: '19/90/1998',
-      epi: [enums.Epi.Epi],
-      ca: ['11-1']
-    },
-    {
       nome: 'Maria Oliveira',
       cpf: '987.654.321-00',
       atividade: enums.Atividade.Ativ01,
@@ -47,6 +34,19 @@ const initialState: DadosState = {
       nascimento: '10/20/1985',
       epi: [enums.Epi.Epi1, enums.Epi.Epi2],
       ca: ['12-3', '45-8']
+    },
+    {
+      nome: 'Astolfo Menezes Silva',
+      cpf: '124.798.987-00',
+      atividade: enums.Atividade.Ativ,
+      cargo: enums.Cargo.Cargo1,
+      idsea: 71,
+      valor: enums.estaAtivo.Ativo,
+      sexo: enums.MascFem.Masculino,
+      rg: '1.234.567',
+      nascimento: '19/90/1998',
+      epi: [enums.Epi.Epi],
+      ca: ['11-1']
     },
     {
       nome: 'Ana Pereira',
