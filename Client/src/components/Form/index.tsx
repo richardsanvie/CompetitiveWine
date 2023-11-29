@@ -285,7 +285,7 @@ export const Form = () => {
                         name="epi"
                         defaultValue={atividade}
                         onChange={(evento) =>
-                          setCargo(evento.target.value as enums.Cargo)
+                          setAtividade(evento.target.value as enums.Atividade)
                         }
                       >
                         <option value={enums.Atividade.Ativ}>
