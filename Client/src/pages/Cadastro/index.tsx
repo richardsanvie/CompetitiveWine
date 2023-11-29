@@ -15,7 +15,7 @@ export const Cadastro = () => {
           <Form />
         </S.Body>
         <S.BarraNextandPreview>
-          <S.Button>Próximo Passo</S.Button>
+          <S.Button to="/embreve1">Próximo Passo</S.Button>
         </S.BarraNextandPreview>
       </S.Container>
     </>

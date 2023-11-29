@@ -23,7 +23,7 @@ export const Main: React.FC = () => {
         />
       </S.Body>
       <S.BarraNextandPreview>
-        <S.Button>Próximo Passo</S.Button>
+        <S.ButtonMain to="/embreve2">Próximo Passo</S.ButtonMain>
       </S.BarraNextandPreview>
     </S.Container>
   )

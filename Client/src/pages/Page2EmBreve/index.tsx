@@ -9,7 +9,7 @@ export type Props = {
   handleItemClick: void
 }
 
-export const PageEmBreve = () => {
+export const EmBreve2 = () => {
   const onItemClick = (itemId: number) =>
     handleItemClick(itemId, setSelectedItem)
   console.log(onItemClick)
@@ -23,8 +23,8 @@ export const PageEmBreve = () => {
           <EmBreve />
         </div>
         <Y.BarraNextandPreview>
-          <S.Button onClick={() => onItemClick(2)}>Passo Anterior</S.Button>
-          <S.Button onClick={() => onItemClick(3)}>Próximo Passo</S.Button>
+          <S.Button to="/">Passo Anterior</S.Button>
+          <S.Button to="/embreve3">Próximo Passo</S.Button>
         </Y.BarraNextandPreview>
       </Y.Container>
     </>

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import variaveis from '../../styles/variaveis'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.main`
   padding: 33px 34px 14px 32px;
@@ -28,9 +29,8 @@ export const BarraNextandPreview = styled.div`
   display: flex;
   justify-content: flex-end;
 `
-
-export const Button = styled.button`
-  color: ${variaveis.branco};
+const ButtonPai = `
+color: ${variaveis.branco};
   font-size: 14px;
   font-weight: 700;
   font-family: 'Roboto', sans-serif;
@@ -38,4 +38,19 @@ export const Button = styled.button`
   background-color: ${variaveis.azul};
   border: 0;
   border-radius: 10px;
+  text-decoration: none;
+  &:hover {
+    background-color: ${variaveis.azul};
+    color: ${variaveis.branco};
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0.9;
+    cursor: pointer;
+  }
+`
+
+export const Button = styled(Link)`
+  ${ButtonPai}
+`
+export const ButtonMain = styled(Link)`
+  ${ButtonPai}
 `

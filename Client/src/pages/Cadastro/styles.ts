@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import variaveis from '../../styles/variaveis'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.main`
   padding: 33px 34px 14px 32px;
@@ -29,7 +30,7 @@ export const BarraNextandPreview = styled.div`
   justify-content: flex-end;
 `
 
-export const Button = styled.button`
+export const Button = styled(Link)`
   color: ${variaveis.branco};
   font-size: 14px;
   font-weight: 700;
