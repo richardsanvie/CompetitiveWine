@@ -27,4 +27,8 @@ export const ControllNameButton = styled.button<Props>`
   color: #fff;
   font-size: 14px;
   margin-right: 12px;
+  &:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
 `
