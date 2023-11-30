@@ -250,6 +250,20 @@ export const YoungInput = styled.select<Props>`
   margin-bottom: 5px;
 `
 
+export const DivTrashativ = styled.div`
+  display: flex;
+`
+
+export const FullInput = styled.select<Props>`
+  height: 36px;
+  border: 1px solid ${variaveis.azul};
+  background-color: ${variaveis.branco};
+  cursor: pointer;
+  margin-top: 8px;
+  width: ${(props) => (props.trash ? '640px' : '676px')};
+  border-radius: ${(props) => (props.trash ? '10px 0 0 10px' : '10px')};
+`
+
 export const YoungInputCA = styled.input<Props>`
   width: 260px;
   height: 36px;
@@ -287,14 +301,21 @@ export const Box = styled.div<Props>`
   border: 1px solid ${variaveis.azul};
   background-color: ${variaveis.branco};
 `
-export const FullInput = styled.select<Props>`
-  width: 676px;
+
+export const ButtonTrash = styled.button`
+  margin-top: 8px;
+  width: 36px;
   height: 36px;
-  border-radius: 10px;
-  border: 1px solid ${variaveis.azul};
+  border-radius: 0 10px 10px 0;
   background-color: ${variaveis.branco};
-  margin-bottom: 12px;
+  border: solid 1px ${variaveis.azul};
+  &:hover {
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0.7;
+    cursor: pointer;
+    color: #3a3a3a;
 `
+
 export const OutlineButton = styled.button<Props>`
   ${OutlineButtonPai}
   width: ${(props) => (props.trash ? '100px' : '136px')};

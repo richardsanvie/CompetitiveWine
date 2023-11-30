@@ -9,7 +9,8 @@ interface Props {
   atividade?: enums.Atividade
   cargo?: enums.Cargo
   isChecked?: boolean
-  trash?: boolean
+  trashEpi?: boolean
+  trashAtividade?: boolean
 }
 
 const BotaoPai = `
@@ -273,11 +274,11 @@ const OutlineButtonPai = `
 
 export const OutlineButton = styled.button<Props>`
   ${OutlineButtonPai}
-  width: ${(props) => (props.trash ? '100px' : '136px')};
+  width: ${(props) => (props.trashEpi ? '100px' : '136px')};
   border-radius: 10px;
-  font-size: ${(props) => (props.trash ? '12px' : '16px')};
+  font-size: ${(props) => (props.trashEpi ? '12px' : '16px')};
   &:hover {
-    border-radius: ${(props) => (props.trash ? '10px 0 0 10px' : '10px')};
+    border-radius: ${(props) => (props.trashEpi ? '10px 0 0 10px' : '10px')};
   }
 `
 export const DivTrashativ = styled.div`
@@ -336,8 +337,9 @@ export const Select = styled(SelectPai)<Props>`
 
 export const FullInput = styled(SelectPai)<Props>`
   margin-top: 8px;
-  width: ${(props) => (props.trash ? '640px' : '676px')};
-  border-radius: ${(props) => (props.trash ? '10px 0 0 10px' : '10px')};
+  width: ${(props) => (props.trashAtividade ? '640px' : '676px')};
+  border-radius: ${(props) =>
+    props.trashAtividade ? '10px 0 0 10px' : '10px'};
 `
 
 export const FullButton = styled.div<Props>`

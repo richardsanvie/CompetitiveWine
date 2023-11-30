@@ -138,6 +138,13 @@ const EditaUsuario = ({
     }
   }
 
+  const handleAddAtividade = (e: { preventDefault: () => void }) => {
+    if (atividade.length < 3) {
+      e.preventDefault()
+      setAtividade([...atividade, ['']])
+    }
+  }
+
   const handleChangeEpi = (
     evento: React.ChangeEvent<HTMLSelectElement>,
     index: number
@@ -149,23 +156,6 @@ const EditaUsuario = ({
     })
     epi[index] = evento.target.value as enums.Epi
     setEpi([...epi])
-  }
-
-  const handleRemoteField = (position: number) => {
-    if (epi.length > 1) {
-      setEpi([...epi.filter((_: any, index: number) => index !== position)])
-    }
-  }
-
-  const handleChangeCa = (
-    evento: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    setCa((prevCa: any) => {
-      const newCa = [...prevCa]
-      newCa[index] = evento.target.value
-      return newCa
-    })
   }
 
   const handleChangeAtividade = (
@@ -181,12 +171,29 @@ const EditaUsuario = ({
     setAtividade([...atividade])
   }
 
-  const handleAddAtividade = (e: { preventDefault: () => void }) => {
-    e.preventDefault()
-    if (atividade.length < 3) {
-      e.preventDefault()
-      setAtividade([...atividade, ['']])
+  const handleRemoteField = (position: number) => {
+    if (epi.length > 1) {
+      setEpi([...epi.filter((_: any, index: number) => index !== position)])
     }
+  }
+
+  const handleRemoteFieldA = (position: number) => {
+    if (atividade.length > 1) {
+      setAtividade([
+        ...atividade.filter((_: any, index: number) => index !== position)
+      ])
+    }
+  }
+
+  const handleChangeCa = (
+    evento: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    setCa((prevCa: any) => {
+      const newCa = [...prevCa]
+      newCa[index] = evento.target.value
+      return newCa
+    })
   }
 
   return (
@@ -317,13 +324,14 @@ const EditaUsuario = ({
             <>
               <S.Box>
                 <S.Label400>Selecione a atividade:</S.Label400>
-                {atividade.map((phone: string, index: number) => (
-                  <div key={index}>
+                {atividade.map((_: string[], index: number) => (
+                  <S.DivTrashativ key={index}>
                     <S.FullInput
                       key={index}
                       name="atividade"
                       defaultValue={atividade[index]}
-                      onChange={(evento) =>
+                      trash={trash}
+                      onChange={(evento: any) =>
                         handleChangeAtividade(evento, index)
                       }
                     >
@@ -340,9 +348,14 @@ const EditaUsuario = ({
                         {enums.Atividade.Ativ02}
                       </option>
                     </S.FullInput>
-                  </div>
+                    {trash && (
+                      <S.ButtonTrash onClick={() => handleRemoteFieldA(index)}>
+                        <S.Img src={image.Lixo} alt="" />
+                      </S.ButtonTrash>
+                    )}
+                  </S.DivTrashativ>
                 ))}
-                {epi.map((phone: string, index: number) => (
+                {epi.map((_: string, index: number) => (
                   <div key={index}>
                     <S.InternBox>
                       <div>

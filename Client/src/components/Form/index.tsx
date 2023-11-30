@@ -18,7 +18,8 @@ export const Form = () => {
   const [novo, setNovo] = useState(true)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [idsea, setIdsea] = useState<number>()
-  const [trash, setTrash] = useState(false)
+  const [trashEpi, setTrashEpi] = useState(false)
+  const [trashAtividade, setTrashAtividade] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
   const [epi, setEpi] = useState<any>([enums.Epi.Epi])
   const dispatch = useDispatch()
@@ -36,7 +37,7 @@ export const Form = () => {
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked)
     setEpi([enums.Epi.Epi])
-    setAtividade(enums.Atividade.Ativ)
+    setAtividade([enums.Atividade.Ativ])
     setCa('00-0')
   }
 
@@ -313,7 +314,7 @@ export const Form = () => {
                             key={index}
                             name="atividade"
                             defaultValue={atividade[index]}
-                            trash={trash}
+                            trashAtividade={trashAtividade}
                             onChange={(evento) =>
                               handleChangeAtividade(evento, index)
                             }
@@ -331,7 +332,7 @@ export const Form = () => {
                               {enums.Atividade.Ativ02}
                             </option>
                           </S.FullInput>
-                          {trash && (
+                          {trashAtividade && (
                             <S.ButtonTrash
                               onClick={() => handleRemoteFieldA(index)}
                             >
@@ -389,12 +390,12 @@ export const Form = () => {
                             <S.DivMapTrash>
                               <S.OutlineButton
                                 onClick={handleAddInputButton}
-                                onMouseLeave={() => setTrash(true)}
-                                trash={trash}
+                                onMouseLeave={() => setTrashEpi(true)}
+                                trashEpi={trashEpi}
                               >
                                 Adicionar EPI
                               </S.OutlineButton>
-                              {trash && (
+                              {trashEpi && (
                                 <S.OutlineButtonTrash
                                   onClick={() => handleRemoteField(i)}
                                 >
@@ -406,7 +407,11 @@ export const Form = () => {
                         </div>
                       ))}
                     </S.Box>
-                    <S.FullButton onClick={handleAddAtividade}>
+                    <S.FullButton
+                      onClick={handleAddAtividade}
+                      onMouseLeave={() => setTrashAtividade(true)}
+                      trashAtividade={trashAtividade}
+                    >
                       Adicionar outra atividade
                     </S.FullButton>
                   </>
