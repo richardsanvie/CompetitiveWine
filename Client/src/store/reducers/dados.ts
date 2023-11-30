@@ -12,7 +12,7 @@ const initialState: DadosState = {
     {
       nome: 'Maria Oliveira',
       cpf: '987.654.321-00',
-      atividade: enums.Atividade.Ativ01,
+      atividade: [enums.Atividade.Ativ01, enums.Atividade.Ativ02],
       cargo: enums.Cargo.Cargo0,
       idsea: 72,
       valor: enums.estaAtivo.Ativo,
@@ -25,7 +25,7 @@ const initialState: DadosState = {
     {
       nome: 'João Silva',
       cpf: '123.456.789-00',
-      atividade: enums.Atividade.Ativ02,
+      atividade: [enums.Atividade.Ativ01, enums.Atividade.Ativ02],
       cargo: enums.Cargo.Cargo1,
       idsea: 73,
       valor: enums.estaAtivo.Ativo,
@@ -38,7 +38,7 @@ const initialState: DadosState = {
     {
       nome: 'Astolfo Menezes Silva',
       cpf: '124.798.987-00',
-      atividade: enums.Atividade.Ativ,
+      atividade: [enums.Atividade.Ativ],
       cargo: enums.Cargo.Cargo1,
       idsea: 71,
       valor: enums.estaAtivo.Ativo,
@@ -51,7 +51,7 @@ const initialState: DadosState = {
     {
       nome: 'Ana Pereira',
       cpf: '456.789.012-34',
-      atividade: enums.Atividade.Ativ00,
+      atividade: [enums.Atividade.Ativ01, enums.Atividade.Ativ02],
       cargo: enums.Cargo.Cargo2,
       idsea: 74,
       valor: enums.estaAtivo.Inativo,
@@ -64,7 +64,7 @@ const initialState: DadosState = {
     {
       nome: 'Carlos Santos',
       cpf: '789.012.345-67',
-      atividade: enums.Atividade.Ativ01,
+      atividade: [enums.Atividade.Ativ01],
       cargo: enums.Cargo.Cargo2,
       idsea: 75,
       valor: enums.estaAtivo.Ativo,

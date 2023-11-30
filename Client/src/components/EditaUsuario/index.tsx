@@ -34,7 +34,7 @@ const EditaUsuario = ({
   const [nome, setNome] = useState('')
   const [cpf, setCpf] = useState(cpfOriginal)
   const [cargo, setCargo] = useState(cargoOriginal)
-  const [atividade, setAtividade] = useState(atividadeOriginal)
+  const [atividade, setAtividade] = useState<any>(atividadeOriginal)
   const [valor, setValor] = useState(valorOriginal)
   const [sexo, setSexo] = useState(sexoOriginal)
   const [rg, setRg] = useState(rgOriginal)
@@ -82,14 +82,14 @@ const EditaUsuario = ({
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked)
     setEpi([enums.Epi.Epi])
-    setAtividade(enums.Atividade.Ativ)
+    setAtividade([enums.Atividade.Ativ])
     setCa('00-0')
   }
 
   useEffect(() => {
     if (
-      epi[0] === enums.Epi.Epi ||
-      atividade === enums.Atividade.Ativ ||
+      epi[0] === enums.Epi.Epi &&
+      atividade[0] === enums.Atividade.Ativ &&
       ca === '00-0'
     ) {
       setIsChecked(true)
@@ -166,6 +166,27 @@ const EditaUsuario = ({
       newCa[index] = evento.target.value
       return newCa
     })
+  }
+
+  const handleChangeAtividade = (
+    evento: React.ChangeEvent<HTMLSelectElement>,
+    index: number
+  ) => {
+    setAtividade((prevAtividade: any) => {
+      const newAtividade = [...prevAtividade]
+      newAtividade[index] = evento.target.value
+      return newAtividade
+    })
+    atividade[index] = evento.target.value as enums.Atividade
+    setAtividade([...atividade])
+  }
+
+  const handleAddAtividade = (e: { preventDefault: () => void }) => {
+    e.preventDefault()
+    if (atividade.length < 3) {
+      e.preventDefault()
+      setAtividade([...atividade, ['']])
+    }
   }
 
   return (
@@ -296,26 +317,31 @@ const EditaUsuario = ({
             <>
               <S.Box>
                 <S.Label400>Selecione a atividade:</S.Label400>
-                <S.FullInput
-                  name="epi"
-                  defaultValue={atividade}
-                  onChange={(evento) =>
-                    setAtividade(evento.target.value as enums.Atividade)
-                  }
-                >
-                  <option value={enums.Atividade.Ativ}>
-                    {enums.Atividade.Ativ}
-                  </option>
-                  <option value={enums.Atividade.Ativ00}>
-                    {enums.Atividade.Ativ00}
-                  </option>
-                  <option value={enums.Atividade.Ativ01}>
-                    {enums.Atividade.Ativ01}
-                  </option>
-                  <option value={enums.Atividade.Ativ02}>
-                    {enums.Atividade.Ativ02}
-                  </option>
-                </S.FullInput>
+                {atividade.map((phone: string, index: number) => (
+                  <div key={index}>
+                    <S.FullInput
+                      key={index}
+                      name="atividade"
+                      defaultValue={atividade[index]}
+                      onChange={(evento) =>
+                        handleChangeAtividade(evento, index)
+                      }
+                    >
+                      <option value={enums.Atividade.Ativ}>
+                        {enums.Atividade.Ativ}
+                      </option>
+                      <option value={enums.Atividade.Ativ00}>
+                        {enums.Atividade.Ativ00}
+                      </option>
+                      <option value={enums.Atividade.Ativ01}>
+                        {enums.Atividade.Ativ01}
+                      </option>
+                      <option value={enums.Atividade.Ativ02}>
+                        {enums.Atividade.Ativ02}
+                      </option>
+                    </S.FullInput>
+                  </div>
+                ))}
                 {epi.map((phone: string, index: number) => (
                   <div key={index}>
                     <S.InternBox>
@@ -378,7 +404,9 @@ const EditaUsuario = ({
                   </div>
                 ))}
               </S.Box>
-              <S.FullButton>Adicionar outra atividade</S.FullButton>
+              <S.FullButton onClick={handleAddAtividade}>
+                Adicionar outra atividade
+              </S.FullButton>
             </>
           )}
         </S.Epi>

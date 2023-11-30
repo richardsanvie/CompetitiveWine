@@ -103,7 +103,7 @@ export const ListDados: React.FC<Props> = ({ atualizarInformacao }: Props) => {
                     <Dados
                       nome={t.nome}
                       cpf={t.cpf}
-                      atividade={t.atividade}
+                      atividade={t.atividade[0]}
                       cargo={t.cargo}
                       valor={t.valor}
                     />

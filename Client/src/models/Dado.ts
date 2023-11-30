@@ -3,7 +3,7 @@ import * as enums from '../utils/enums/CargoAtividade'
 class Dado {
   nome: string
   cpf: string
-  atividade: enums.Atividade
+  atividade: enums.Atividade[]
   cargo: enums.Cargo
   idsea: number
   valor: enums.estaAtivo
@@ -16,7 +16,7 @@ class Dado {
   constructor(
     nome: string,
     cpf: string,
-    atividade: enums.Atividade,
+    atividade: enums.Atividade[],
     cargo: enums.Cargo,
     idsea: number,
     valor: enums.estaAtivo,

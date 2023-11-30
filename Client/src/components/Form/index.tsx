@@ -27,7 +27,7 @@ export const Form = () => {
   const [cpf, setCpf] = useState<any>()
   const [valor, setValor] = useState(enums.estaAtivo.Ativo)
   const [cargo, setCargo] = useState(enums.Cargo.Cargo0)
-  const [atividade, setAtividade] = useState(enums.Atividade.Ativ)
+  const [atividade, setAtividade] = useState<any>([enums.Atividade.Ativ])
   const [sexo, setSexo] = useState(enums.MascFem.Masculino)
   const [rg, setRg] = useState<any>()
   const [nascimento, setNascimento] = useState<any>()
@@ -58,20 +58,49 @@ export const Form = () => {
 
   const handleChangeEpi = (
     evento: React.ChangeEvent<HTMLSelectElement>,
-    index: number
+    i: number
   ) => {
     setEpi((prevEpi: any) => {
       const newEpi = [...prevEpi]
-      newEpi[index] = evento.target.value
+      newEpi[i] = evento.target.value
       return newEpi
     })
-    epi[index] = evento.target.value as enums.Epi
+    epi[i] = evento.target.value as enums.Epi
     setEpi([...epi])
+  }
+
+  const handleChangeAtividade = (
+    evento: React.ChangeEvent<HTMLSelectElement>,
+    index: number
+  ) => {
+    setAtividade((prevAtividade: any) => {
+      const newAtividade = [...prevAtividade]
+      newAtividade[index] = evento.target.value
+      return newAtividade
+    })
+    atividade[index] = evento.target.value as enums.Atividade
+    setAtividade([...atividade])
+  }
+
+  const handleAddAtividade = (e: { preventDefault: () => void }) => {
+    e.preventDefault()
+    if (atividade.length < 3) {
+      e.preventDefault()
+      setAtividade([...atividade, ['']])
+    }
   }
 
   const handleRemoteField = (position: number) => {
     if (epi.length > 1) {
-      setEpi([...epi.filter((_: any, index: number) => index !== position)])
+      setEpi([...epi.filter((_: any, i: number) => i !== position)])
+    }
+  }
+
+  const handleRemoteFieldA = (position: number) => {
+    if (atividade.length > 1) {
+      setAtividade([
+        ...atividade.filter((_: any, index: number) => index !== position)
+      ])
     }
   }
 
@@ -278,37 +307,50 @@ export const Form = () => {
                   <>
                     <S.Box>
                       <S.Label400>Selecione a atividade:</S.Label400>
-                      <S.FullInput
-                        name="epi"
-                        defaultValue={atividade}
-                        onChange={(evento) =>
-                          setAtividade(evento.target.value as enums.Atividade)
-                        }
-                      >
-                        <option value={enums.Atividade.Ativ}>
-                          {enums.Atividade.Ativ}
-                        </option>
-                        <option value={enums.Atividade.Ativ00}>
-                          {enums.Atividade.Ativ00}
-                        </option>
-                        <option value={enums.Atividade.Ativ01}>
-                          {enums.Atividade.Ativ01}
-                        </option>
-                        <option value={enums.Atividade.Ativ02}>
-                          {enums.Atividade.Ativ02}
-                        </option>
-                      </S.FullInput>
-                      {epi.map((epi: string[], index: number) => (
-                        <div key={index}>
+                      {atividade.map((atividade: string[], index: number) => (
+                        <S.DivTrashativ key={index}>
+                          <S.FullInput
+                            key={index}
+                            name="atividade"
+                            defaultValue={atividade[index]}
+                            trash={trash}
+                            onChange={(evento) =>
+                              handleChangeAtividade(evento, index)
+                            }
+                          >
+                            <option value={enums.Atividade.Ativ}>
+                              {enums.Atividade.Ativ}
+                            </option>
+                            <option value={enums.Atividade.Ativ00}>
+                              {enums.Atividade.Ativ00}
+                            </option>
+                            <option value={enums.Atividade.Ativ01}>
+                              {enums.Atividade.Ativ01}
+                            </option>
+                            <option value={enums.Atividade.Ativ02}>
+                              {enums.Atividade.Ativ02}
+                            </option>
+                          </S.FullInput>
+                          {trash && (
+                            <S.ButtonTrash
+                              onClick={() => handleRemoteFieldA(index)}
+                            >
+                              <S.Img src={image.Lixo} alt="" />
+                            </S.ButtonTrash>
+                          )}
+                        </S.DivTrashativ>
+                      ))}
+                      {epi.map((epi: string[], i: number) => (
+                        <div key={i}>
                           <S.InternBox>
                             <div>
                               <S.Label400>Selecione o EPI:</S.Label400>
                               <S.YoungInput
-                                key={index}
+                                key={i}
                                 name="epi"
-                                defaultValue={epi[index]}
+                                defaultValue={epi[i]}
                                 onChange={(evento) =>
-                                  handleChangeEpi(evento, index)
+                                  handleChangeEpi(evento, i)
                                 }
                               >
                                 <option value={enums.Epi.Epi}>
@@ -329,19 +371,19 @@ export const Form = () => {
                               <S.Label400>Informe o número do CA:</S.Label400>
                               <S.InputFormatadoCA
                                 mask="00-0"
-                                key={index}
-                                defaultValue={ca[index]}
+                                key={i}
+                                defaultValue={ca[i]}
                                 onAccept={(value) => {
                                   handleChangeCa(
                                     {
                                       target: { value }
                                     } as React.ChangeEvent<HTMLInputElement>,
-                                    index
+                                    i
                                   )
                                 }}
                                 onChange={(
                                   evento: React.ChangeEvent<HTMLInputElement>
-                                ) => handleChangeCa(evento, index)}
+                                ) => handleChangeCa(evento, i)}
                               />
                             </div>
                             <S.DivMapTrash>
@@ -354,7 +396,7 @@ export const Form = () => {
                               </S.OutlineButton>
                               {trash && (
                                 <S.OutlineButtonTrash
-                                  onClick={() => handleRemoteField(index)}
+                                  onClick={() => handleRemoteField(i)}
                                 >
                                   <S.Img src={image.Lixo} alt="" />
                                 </S.OutlineButtonTrash>
@@ -364,7 +406,9 @@ export const Form = () => {
                         </div>
                       ))}
                     </S.Box>
-                    <S.FullButton>Adicionar outra atividade</S.FullButton>
+                    <S.FullButton onClick={handleAddAtividade}>
+                      Adicionar outra atividade
+                    </S.FullButton>
                   </>
                 )}
               </S.Epi>

@@ -194,7 +194,6 @@ export const Label400 = styled.p`
   font-weight: 400;
   color: #3a3a3a;
   font-family: 'Roboto', sans-serif;
-  margin-bottom: 8px;
 `
 export const YoungInputCA = styled.input<Props>`
   width: 260px;
@@ -256,7 +255,7 @@ export const DivMapTrash = styled.div`
 const OutlineButtonPai = `
   height: 36px;
   border: 0;
-  margin-top: 27px;
+  margin-top: 19px;
   font-weight: 400;
   color: #3a3a3a;
   background-color: ${variaveis.branco};
@@ -281,6 +280,22 @@ export const OutlineButton = styled.button<Props>`
     border-radius: ${(props) => (props.trash ? '10px 0 0 10px' : '10px')};
   }
 `
+export const DivTrashativ = styled.div`
+  display: flex;
+`
+export const ButtonTrash = styled.button`
+  margin-top: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 0 10px 10px 0;
+  background-color: ${variaveis.branco};
+  border: solid 1px ${variaveis.azul};
+  &:hover {
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0.7;
+    cursor: pointer;
+    color: #3a3a3a;
+`
 
 export const OutlineButtonTrash = styled.button`
   ${OutlineButtonPai}
@@ -303,7 +318,6 @@ export const Ativo = styled.select<Props>`
 `
 export const SelectPai = styled.select<Props>`
   height: 36px;
-  border-radius: 10px;
   border: 1px solid ${variaveis.azul};
   background-color: ${variaveis.branco};
   cursor: pointer;
@@ -311,18 +325,22 @@ export const SelectPai = styled.select<Props>`
 export const YoungInput = styled(SelectPai)<Props>`
   width: 260px;
   margin-bottom: 12px;
+  border-radius: 10px;
 `
 
 export const Select = styled(SelectPai)<Props>`
   width: 338px;
   margin-bottom: 12px;
+  border-radius: 10px;
 `
 
 export const FullInput = styled(SelectPai)<Props>`
-  width: 676px;
+  margin-top: 8px;
+  width: ${(props) => (props.trash ? '640px' : '676px')};
+  border-radius: ${(props) => (props.trash ? '10px 0 0 10px' : '10px')};
 `
 
-export const FullButton = styled.div`
+export const FullButton = styled.div<Props>`
   width: 700px;
   height: 36px;
   ${BotaoPai}
